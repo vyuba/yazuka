@@ -7,6 +7,9 @@
                 width="40px"
                 >
             </div>
+            {% if shop.customer_accounts_enabled == true %}
+              <a href="{{ routes.account_login_url }}" class="flex items-center justify-center text-base text-gray-500 hover:text-gray-900">{% render "icon-account" %}</a>
+            {% endif %}
             <a
               class="custom-header-search-icon Header__Icon Icon-Wrapper Icon-Wrapper--clickable"
               data-action="toggle-search"

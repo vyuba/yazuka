@@ -1,21 +1,88 @@
 <!-- /templates/customers/register.liquid -->
+ <section>
+     <h1> sign up </h1>
+     {% form class:form 'create_customer' %}
+        {{ form.errors | default_errors }}
+        <div class="first-name input-container">
+          <label for="first-name">First name</label>
+          <input  type="text" name="customer[first_name]">
+        </div>
+      
+        <div class="last-name input-container">
+          <label for="last-name">Last name</label>
+          <input  type="text" name="customer[last_name]">
+        </div>
+      
+        <div class="email input-container">
+          <label for="email">Email</label>
+          <input  type="email" name="customer[email]">
+        </div>
+      
+        <div class="password input-container">
+          <label for="password">Password</label>
+          <input  type="password" name="customer[password]">
+        </div>
+      
+        <div class="submit">
+          <input  type="submit" value="Create">
+        </div>
+        <div class="login-container">
+            <p>if you already have an account</p> <a href="{{ routes.account_login_url }}"><p>login</p></a>
+        </div>
+      {% endform %}
+ </section>
 
-{% form 'create_customer' %}
+ <style>
+    section{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+    }
 
-{{ form.errors | default_errors }}
+    h1{
+        font-size: 23px;
+        font-weight: 700;
+        text-transform: capitalize;
+    }
 
-<label for="first_name">First Name</label>
-<input type="text" value="" name="customer[first_name]" size="30" />
-
-<label for="last_name">Last Name</label>
-<input type="text" value="" name="customer[last_name]" size="30" />
-
-<label for="email">Email Address</label>
-<input type="email" value="" name="customer[email]" size="30" />
-
-<label for="password">Password</label>
-<input type="password" value="" name="customer[password]" size="30" />
-
-<input type="submit" value="Create" />
-
-{% endform %}
+    .form{
+        min-width: 300px;
+        max-width: 400px;
+        height: 300px;
+    }
+    .input-container{
+        margin-top: 5px;
+    }
+    .input-container > input{
+        border: 1px solid gray;
+        padding: 10px 0;
+        border-radius: 0px;
+    }
+    .submit{
+        width: 100%;
+        /* border-radius: 10px; */
+        height: fit-content;
+        background-color: black;
+        color: white;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 20px;
+    }
+    .login-container{
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        text-transform: capitalize;
+    }
+    .login-container > a{
+        text-decoration: underline;
+        color: red;
+    }
+ </style>
