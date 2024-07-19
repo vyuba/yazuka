@@ -1,0 +1,534 @@
+<div class="floating-nav-container">
+        <nav class="navbar">
+          <div class="navbar-conatainer">
+            <div class="header-logo-wrapper">
+                <img src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/YAZUKA.png?v=1674193263" alt=""
+                height="40px"
+                width="40px"
+                >
+            </div>
+            <a
+              class="custom-header-search-icon Header__Icon Icon-Wrapper Icon-Wrapper--clickable"
+              data-action="toggle-search"
+              id="toggle-search"
+              aria-label="Search"
+            >
+              {% render "icon-search" %}
+            </a>
+
+              <span class="hidden-phone" onclick="openCartDrawer()">
+                  {% render "icon-shopping-bag" %}
+                </span>
+              <span class="Header__CartDot"></span>
+  
+                <input hidden="" class="check-icon" id="check-icon" name="check-icon" type="checkbox">
+                <label class="icon-menu" for="check-icon" id="toggleButton" >
+                    <div class="bar bar--1"></div>
+                    <div class="bar bar--2"></div>
+                    <div class="bar bar--3"></div>
+                </label>
+          </div>
+          <div id="search-box">
+            <svg
+              class="Icon Icon--search"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <g>
+                <path
+                  d="M18.031 16.617L22.314 20.899L20.899 22.314L16.617 18.031C15.0237 19.3082 13.042 20.0029 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20.0029 13.042 19.3082 15.0237 18.031 16.617ZM16.025 15.875C17.2941 14.5699 18.0029 12.8204 18 11C18 7.132 14.867 4 11 4C7.132 4 4 7.132 4 11C4 14.867 7.132 18 11 18C12.8204 18.0029 14.5699 17.2941 15.875 16.025L16.025 15.875V15.875Z"
+                  fill="#09121F"
+                ></path>
+              </g>
+              <defs>
+                <clipPath id="clip0_624_4721">
+                  <rect width="24" height="24" fill="white"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+            <input class="search-input" placeholder="search" />
+          </div>
+          <div id="myDiv" class="">
+            {%- for link in linklists['main-menu'].links -%}
+                <li class="{% if link.active %} link-active {% else %} link-not-active {% endif %}" >
+                  {%- if link.links != blank -%}
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}"
+                        class="menu-drawer__menu-item .menu-tab list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                      >
+                        {{ link.title | escape }}
+                         {% render 'icon-plus' %}
+                        {% comment %} {% render 'icon-caret' %} {% endcomment %}
+                      </summary>
+                      <div
+                        id="link-{{ link.handle | escape }}"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                        tabindex="-1"
+                      >
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            {% render 'icon-arrow' %}
+                            {{ link.title | escape }}
+                          </button>
+                          <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                            {%- for childlink in link.links -%}
+                              <li>
+                                {%- if childlink.links == blank -%}
+                                  <a
+                                    id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                    href="{{ childlink.url }}"
+                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                    {% if childlink.current %}
+                                      aria-current="page"
+                                    {% endif %}
+                                  >
+                                    {{ childlink.title | escape }}
+                                  </a>
+                                {%- else -%}
+                                  <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
+                                    <summary
+                                      id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
+                                    >
+                                      {{ childlink.title | escape }}
+                                      {% render 'icon-arrow' %}
+                                      {% comment %} {% render 'icon-caret' %} {% endcomment %}
+                                    </summary>
+                                    <div
+                                      id="childlink-{{ childlink.handle | escape }}"
+                                      class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                                    >
+                                      <button
+                                        class="menu-drawer__close-button link link--text focus-inset"
+                                        aria-expanded="true"
+                                      >
+                                        {% render 'icon-arrow' %}
+                                        {{ childlink.title | escape }}
+                                      </button>
+                                      <ul
+                                        class="menu-drawer__menu list-menu"
+                                        role="list"
+                                        tabindex="-1"
+                                      >
+                                        {%- for grandchildlink in childlink.links -%}
+                                          <li>
+                                            <a
+                                              id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                              href="{{ grandchildlink.url }}"
+                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                              {% if grandchildlink.current %}
+                                                aria-current="page"
+                                              {% endif %}
+                                            >
+                                              {{ grandchildlink.title | escape }}
+                                            </a>
+                                          </li>
+                                        {%- endfor -%}
+                                      </ul>
+                                    </div>
+                                  </details>
+                                {%- endif -%}
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      </div>
+                    </details>
+                  {%- else -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ link.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title | escape }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            {% comment %} <div class="menu-tab">This is a toggleable div.</div> {% endcomment %}
+          </div>
+        </nav>
+</div>
+{% stylesheet %}
+    /* body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+} */
+
+/* .container {
+  position: fixed;
+  top: 10px;
+  top: 45px;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  padding: 0 10px;
+  filter: invert(1);
+  position: fixed;
+} */
+.list-menu__item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    background-color: gray;
+  }
+}
+.floating-nav-container {
+  position: fixed;
+  top: 45px;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  padding: 0 10px;
+  overflow: hidden;
+  /* background-color: yellow; */
+}
+
+.floating-nav-container .navbar {
+  max-width: 380px;
+  border: 1px solid #000;
+  width: 100%;
+}
+
+.navbar {
+  background-color: white ;
+  width: 100%;
+  /* padding: 10px; */
+  padding-block: 10px;
+  padding-inline: 10px;
+  max-width: 387px;
+  /* padding-inline: 10px; */
+  /* padding-block-end: 10px; */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  /* border: 1px solid #fff; */
+}
+
+@media only screen and (max-width: 767px) {
+  .floating-nav-container .navbar {
+    max-width: 100%;
+  }
+}
+/* @media only screen and (min-width: 767px) {
+  .floating-nav-container {
+    left: 10px;
+  }
+} */
+
+.navbar-conatainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* gap: 12px; */
+  /* padding-block: 10px;
+  padding-inline: 10px; */
+  color: #fff;
+}
+
+.header-logo-wrapper {
+  flex: 1;
+  justify-content: flex-start;
+  display: flex;
+}
+
+#myDiv {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+.menu-tab {
+  padding: 5px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    background-color: gray;
+  }
+}
+
+#myDiv.visible {
+  max-height: 500px; /* Adjust to the content height */
+  position: relative;
+}
+
+.Header__Icon {
+  width: 18px;
+  height: 18px;
+}
+
+.Header__Icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 5px;
+}
+
+.Header__Icon {
+  /* display: inline-block; */
+  /* line-height: 1; */
+  transition: color 0.2s ease-in-out;
+}
+
+#search-box {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+#search-box.active {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  gap: 5px;
+  max-height: 500px;
+}
+
+.search-input {
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+.icon-menu {
+  --gap: 5px;
+  --height-bar: 1.5px;
+  --pos-y-bar-one: 0;
+  --pos-y-bar-three: 0;
+  --scale-bar: 1;
+  --rotate-bar-one: 0;
+  --rotate-bar-three: 0;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  cursor: pointer;
+  position: relative;
+  padding-inline: 5px;
+}
+
+.bar {
+  position: relative;
+  height: var(--height-bar);
+  width: 100%;
+  border-radius: 0;
+  background-color: #000;
+}
+
+.bar--1 {
+  top: var(--pos-y-bar-one);
+  transform: rotate(var(--rotate-bar-one));
+  transition: top 200ms 100ms, transform 100ms;
+}
+
+.bar--2 {
+  transform: scaleX(var(--scale-bar));
+  transition: transform 150ms 100ms;
+}
+
+.bar--3 {
+  bottom: var(--pos-y-bar-three);
+  transform: rotate(var(--rotate-bar-three));
+  transition: bottom 200ms 100ms, transform 100ms;
+}
+
+.check-icon:checked + .icon-menu > .bar--1 {
+  transition: top 200ms, transform 200ms 100ms;
+}
+
+.check-icon:checked + .icon-menu > .bar--3 {
+  transition: bottom 200ms, transform 200ms 100ms;
+}
+
+.check-icon:checked + .icon-menu {
+  --pos-y-bar-one: calc(var(--gap) + var(--height-bar));
+  --pos-y-bar-three: calc(var(--gap) + var(--height-bar));
+  --scale-bar: 0;
+  --rotate-bar-one: 45deg;
+  --rotate-bar-three: -45deg;
+}
+/* FIN ICON-MENU */
+
+@keyframes lazyLoader {
+  0%,
+  100% {
+    transform: translateX(-50%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+.image-container {
+  position: relative;
+  width: 600px; /* Adjust the width as needed */
+  height: 600px; /* Adjust the height as needed */
+  overflow: hidden;
+}
+
+.image--lazyLoading {
+  width: 100%; /* Adjust the width as needed */
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.image__loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image__loader::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  animation: lazyLoader 3s infinite cubic-bezier(0.43, 0.43, 0.25, 0.99);
+}
+
+.image-loaded {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.back {
+  background-image: url("https://unsplash.com/photos/man-in-black-leather-jacket-wearing-black-cowboy-hat-qZHagBnDt7Q");
+  width: 300px;
+  height: 200px;
+  background-position: cover;
+  background-repeat: no-repeat;
+}
+
+.link-active{
+  background-color: yellow;
+}
+.link-not-active{
+  background-color: inherit;
+}
+
+details > summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-betwenn;
+  align-items: center;
+  width: 100%;
+}
+
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.menu-drawer__submenu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white; /* or any desired background color */
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 1000; /* ensure it covers the nav */
+  padding-inline: 10px;
+}
+
+.menu-drawer__submenu.open {
+  animation: slideInFromRight 0.3s forwards;
+}
+
+.menu-drawer__submenu.close {
+  animation: slideOutToRight 0.3s forwards;
+}
+
+.menu-drawer__close-button{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.menu-drawer__close-button > svg{
+  width: 20px;
+}
+
+{% endstylesheet %}
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const detailsElements = document.querySelectorAll('details[id^="Details-menu-drawer-menu-item-"]');
+
+  detailsElements.forEach(details => {
+    const summary = details.querySelector('summary.menu-drawer__menu-item');
+    const submenu = details.querySelector('.menu-drawer__submenu');
+    const closeButton = submenu.querySelector('button.menu-drawer__close-button');
+
+    summary.addEventListener('click', (event) => {
+      if (!details.hasAttribute('open')) {
+        submenu.classList.remove('close');
+        submenu.classList.add('open');
+      } else {
+        submenu.classList.remove('open');
+        submenu.classList.add('close');
+      }
+    });
+
+    closeButton.addEventListener('click', () => {
+      submenu.classList.remove('open');
+      submenu.classList.add('close');
+      setTimeout(() => {
+        details.removeAttribute('open');
+      }, 300); // Match the duration of the slideOut animation
+    });
+  });
+});
+
+</script>

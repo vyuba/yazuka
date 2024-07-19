@@ -1,0 +1,70 @@
+<div class="banner ">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/0876CA40-E5FC-40C5-A054-8F85BE439BB2.jpg?v=1687380253"
+      class="img-banner"
+      height=""
+      width=""
+      alt="Background Image"
+    >
+      <div class="logo">
+        <img src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/YAZUKA.png?v=1674193263" alt=""
+        height=""
+        width=""
+       >
+      </div>
+      <div class="collection-container">
+        {% for collection in collections %}
+          <a href="{{ collection.url }}">
+            <li>
+              {{ collection.title }}
+            </li>
+          </a>
+      {% endfor %}
+      </div>
+
+</div>
+
+<style>
+  .banner{
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .img-banner{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    inset: 0;
+  }
+
+  .banner-container{
+    z-index: 1000;
+  }
+
+  .logo{
+    font-size: 100px;
+    text-transform: capitalize;
+    position: fixed;
+    color: white;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .collection-container{
+    z-index: 1000;
+    font-size: 20px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-bottom: 20px;
+  }
+</style>

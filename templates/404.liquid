@@ -1,0 +1,16 @@
+<div class="w-full h-screen flex items-center justify-center text-white">
+    <div class="flex flex-col items-center justify-center w-full h-full">
+        <div class="text-5xl md:text-9xl text-white font-bold my-4">404</div>
+        <img src="{{ "032c-baby.gif"| asset_url }}" height="" width="" alt="">
+        <div class="my-4">
+            <p class="text-base md:text-xl leading-normal">{{ section.settings.subtext_title |  capitalize  }}</p>
+            {% if section.settings.button_url == null %}
+                {% assign shop_url = shop.secure_url %}
+                {% else %}
+                    {% assign shop_url = section.settings.button_url %}
+            {% endif %}
+            <a class="underline capitalize underline-offset-2 decoration-dotted font-bold hover:text-red-500  " href="{{ shop_url }}"> go back to home page→</a>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="pt-14 text-white  w-full">
+  {% paginate search.results by 10 %}
+    <form class="px-4 py-4 w-screen " action="/search" method="get" role="search">
+      {% comment %} <input class="border-2 border-white bg-white" type="search" name="q" value="{{ search.terms | escape }}"> {% endcomment %}
+      <header
+        class="py-1 pr-2 justify-self-center   sticky top-0 z-10 flex justify-between items-center bg-white"
+        id="chakra-modal--header-3"
+      >
+        <input
+          name="q"
+          type="search"
+          autocomplete="off"
+          class="chakra-input form-control w-full text-md border-none h-block pl-4 bg-white text-black placeholder:text-black placeholder:text-opacity-50 font-normal css-qon9cs"
+          placeholder="Search magazine and store"
+          value="{{ search.terms | escape }}"
+        >
+        <div class="block md:hidden bg-white">
+          <button type="button" class="chakra-button css-1ax86fp" aria-label="Close Search">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.064 2.9375L2.93701 21.0625" stroke="black" stroke-miterlimit="10"></path><path d="M21.062 21.0625L2.936 2.9375" stroke="black" stroke-miterlimit="10"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+      {% comment %} <button type="submit">{% render 'icon-search' %}</button> {% endcomment %}
+    </form>
+    {% if search.performed %}
+      {% if search.results.size > 0 %}
+        <div class="max-w-6xl mx-auto  ">
+          <div class="grid  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
+            {% for item in search.results %}
+              {% case item.object_type  %}
+                {% when 'product' %}
+                  {% render 'product-card', product:item %}
+                {% else %}
+                  
+              {% endcase %}
+            {% endfor %}
+          </div>
+        </div>
+        {% else %}
+        <div class="w-full h-full flex items-center justify-center text-white">
+          <div class="flex flex-col items-center justify-center w-full h-full">
+            <div class="text-xl md:text-2xl text-white capitalize font-bold my-4">product not found</div>
+            <img
+            src="{{ "032c-baby.gif"| asset_url }}"
+            height=""
+            width=""
+            alt=""
+            >
+            <div class="my-4">
+              <p class="text-base md:text-xl leading-normal"></p>
+                {% assign shop_url = shop.secure_url %}
+              <a
+              class="underline capitalize underline-offset-2 decoration-dotted font-bold hover:text-red-500  "
+              href="{{ shop_url }}"
+              >
+              try again→</a
+              >
+              </div>
+              </div>
+              </div>
+      {% endif %}
+    {% endif %}
+
+    {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+  {% endpaginate %}
+</div>
+<style>
+  .highlight{
+    background-color: red;
+  }
+</style>

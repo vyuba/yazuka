@@ -1,0 +1,23 @@
+<div class="product-grid-item text-white hover:text-red-600">
+  <a href="{{ product.url }}">
+<img src="{{ product.featured_image | image_url: width: 400 }}" height="" width="">
+
+<span class="product-grid-item-text">
+  <h3>{{ product.title | highlight: search.terms }}</h3>
+  <p class="product-grid-item-price">{{ product.price | money }}</p>
+</span>
+</a>
+</div>
+{% comment %} <div class=" hover:text-red-600 text-white"> 
+  <div class="">
+    <a href="{{ product.url | within: collection }}">
+      <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" class=" " height="" width="">
+    </a>
+  </div>
+  <div class="flex flex-col-reverse  ">
+    {{ product.price | money }}
+    <a class="font-medium capitalize" href="{{ product.url | within: collection }}">
+    {{ product.title | capitalize }}</a>
+    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+  </div>
+</div> {% endcomment %}

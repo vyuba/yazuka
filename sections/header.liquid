@@ -1,0 +1,384 @@
+<div
+  id="app"
+  class=" relative z-[10000] bg-white "
+
+>
+  {% comment %} <style>
+    [x-cloak] {
+      display: none !important;
+    }
+  </style> {% endcomment %}
+  <div class="mx-auto px-3 w-full fixed  top-0 bg-black sm:px-3 h-12">
+    <div class="flex justify-between h-full items-center overflow-hidden  ">
+      <div class="-ml-2 -my-2 mr-3 lg:hidden flex justify-evenly items-center">
+        <button
+        id="menuButton"
+
+          type="button"
+          class="bg-black p-2 inline-flex items-center justify-center focus:outline-none"
+        >
+          {% render 'icon-hamburger-menu' %}
+        </button>
+      </div>
+      <!-- NAVIGATION MENU -->
+      <nav class=" hidden lg:flex gap-4 items-center justify-start">
+  {% for link in linklists['main-menu'].links %}
+    {% if link.title == 'Home' %}
+      <div class="relative">
+        <a
+          class="decoration-dotted underline-offset-2 underline text-base font-semibold hover:text-red-500 {% if link.active %} text-red-600 {% else %} text-white {% endif %}"
+          href="{{ link.url }}"
+        >
+          {{ link.title | upcase }}
+        </a>
+      </div>
+    {% elsif link.title == 'Magazine' %}
+      <div class="relative">
+        <a
+          class="decoration-dotted underline-offset-2 underline text-base font-semibold hover:text-red-500 text-white"
+          href="https://www.deedsmag.com/?fbclid=PAZXh0bgNhZW0CMTEAAaYdoDKwminG0JUNlCVq77hxl1iReWqX8VDMHbfcoSN9z1o2BBmXA4iIu-8_aem_AXTdAWkzcfrHxRaP2dFsdIkD4Haca-X-fU2MtBrEbYs6JC8H0Im5KcPzWMyRSE_5oH5YwlUK4Nlj2zn9eXUqUvfY" target="_blank" rel="noopener noreferrer"
+        >
+          {{ link.title | upcase }}
+        </a>
+      </div>
+    {% elsif link.title == 'Merch' %}
+      <!-- Merch link is hidden, do nothing -->
+    {% else %}
+      {% if link.links != blank %}
+        <div class="relative">
+          <button type="button" class="inline-flex items-center text-base text-black hover:text-red-500">
+            {{ link.title | upcase }}
+          </button>
+        </div>
+      {% else %}
+        <div class="relative">
+          <a
+            class="decoration-dotted underline-offset-2 underline text-base font-semibold hover:text-red-500 {% if link.active %} text-red-600 {% else %} text-white {% endif %}"
+            href="{{ link.url }}"
+          >
+            {{ link.title | upcase }}
+          </a>
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</nav>
+
+      {% comment %} <nav class="hidden lg:flex gap-4 items-center justify-start">
+        {% for link in linklists['main-menu'].links %}
+          {% if link.title == 'Merch' %}         
+          {% endif %}
+          {% if link.links != blank %}
+            <div class="relative">
+              <button type="button" class="inline-flex items-center text-base text-black hover:text-red-500 ">
+                {{ link.title | upcase }}
+              </button>
+            </div>
+          {% else %}
+            <div class="relative">
+              <a
+                class="decoration-dotted underline-offset-2 underline text-base font-semibold  hover:text-red-500   {% if link.active == true %} text-red-600 {% else %} text-white {% endif %}"
+                href="{{ link.url }}"
+              >
+                {{ link.title |upcase }}
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </nav> {% endcomment %}
+      <!-- STORE NAME / STORE LOGO -->
+      <div class="flex items-center lg:pr-32   justify-center truncate">
+        <h1 class="text-xl font-bold truncate">
+          <a href="{{ routes.root_url  }}" class="block">
+            <img height="" width="" src="{{ 'deeds rotating logo.gif' | asset_url }}" alt="Default Logo Image" class="w-20 ">
+          </a>
+        </h1>
+      </div>
+
+      <div class="flex items-center gap-4  justify-end">
+      {% if template != 'index' %}  
+        <a class="" href="{{ routes.search_url }}" class="text-base text-gray-500 hover:text-gray-900" >
+          {% render 'icon-search' -%}
+        </a>
+      {% endif %}
+        <div class="flex">
+          <a @click="openCart = !openCart" onclick="openCartDrawer()" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-900">
+            <svg class="w-6 h-6">
+              {% render 'icon-shopping-bag' %}
+            </svg>
+          </a>
+          <span class="flex gap-1 text-white cart-count ">
+          {% if cart.item_count != 0 %}
+              <span class="cart-count">{{ cart.item_count }}</span> 
+            {% endif %}
+            </span>
+        </div>
+        {% if shop.customer_accounts_enabled == true %}
+          <a href="{{ routes.account_login_url }}" class="text-base text-gray-500 hover:text-gray-900">Login</a>
+          <a href="{{ routes.account_register_url }}" class="text-base text-gray-500 hover:text-gray-900">Register</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <nav
+    id="mobile-navigation"
+    class="fixed top-0 right-0 bottom-0 left-0 backdrop-blur-sm invisible"
+  >
+    <!-- UL Links -->
+    <ul
+      id="menu"
+      class="absolute top-0 left-0 bottom-0 w-64 pb-4 bg-black drop-shadow-xl transition-all -translate-x-full"
+    >
+      <div class="flex gap-4 items-center">
+        <button
+          id="closeMenuButton"
+          type="button"
+          class="bg-inherit p-2 inline-flex items-center justify-center focus:outline-none"
+        >
+          {% render 'icon-close-button' %}
+        </button>
+        <a class="block" href="{{ routes.search_url }}" class="text-base text-gray-500 hover:text-gray-900">
+          {% render 'icon-search' %}
+        </a>
+      </div>
+      {%- for link in linklists['main-menu'].links -%}
+        <li>
+          {%- if link.links != blank -%}
+            <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+              <summary
+                id="HeaderDrawer-{{ link.handle }}"
+                class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+              >
+                {{ link.title | escape }}
+                {% comment %} {% render 'icon-arrow' %}
+                {% render 'icon-caret' %} {% endcomment %}
+              </summary>
+              <div
+                id="link-{{ link.handle | escape }}"
+                class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                tabindex="-1"
+              >
+                <div class="menu-drawer__inner-submenu">
+                  <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                    {% comment %} {% render 'icon-arrow' %} {% endcomment %}
+                    {{ link.title | escape }}
+                  </button>
+                  <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                    {%- for childlink in link.links -%}
+                      <li>
+                        {%- if childlink.links == blank -%}
+                          <a
+                            id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                            href="{{ childlink.url }}"
+                            class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                            {% if childlink.current %}
+                              aria-current="page"
+                            {% endif %}
+                          >
+                            {{ childlink.title | escape }}
+                          </a>
+                        {%- else -%}
+                          <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
+                            <summary
+                              id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
+                            >
+                              {{ childlink.title | escape }}
+                              {% comment %} {% render 'icon-arrow' %}
+                              {% render 'icon-caret' %} {% endcomment %}
+                            </summary>
+                            <div
+                              id="childlink-{{ childlink.handle | escape }}"
+                              class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                            >
+                              <button
+                                class="menu-drawer__close-button link link--text focus-inset"
+                                aria-expanded="true"
+                              >
+                                {% comment %} {% render 'icon-arrow' %} {% endcomment %}
+                                {{ childlink.title | escape }}
+                              </button>
+                              <ul
+                                class="menu-drawer__menu list-menu"
+                                role="list"
+                                tabindex="-1"
+                              >
+                                {%- for grandchildlink in childlink.links -%}
+                                  <li>
+                                    <a
+                                      id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                      href="{{ grandchildlink.url }}"
+                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                      {% if grandchildlink.current %}
+                                        aria-current="page"
+                                      {% endif %}
+                                    >
+                                      {{ grandchildlink.title | escape }}
+                                    </a>
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            </div>
+                          </details>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+            </details>
+          {%- else -%}
+            <a
+              id="HeaderDrawer-{{ link.handle }}"
+              href="{{ link.url }}"
+              class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+              {% if link.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              {{ link.title | escape }}
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+      {% for list in linklists['main-menu'].links %}
+        {% if list.title == 'Home' %}
+          <li class="border-b text-white border-white">
+            <a
+              href="{{ list.url }}"
+              class="block p-4"
+              aria-current="true"
+            >
+              {{ list.title | upcase }}
+            </a>
+          </li>
+        {% elsif list.title == 'Magazine' %}
+          <li class="border-b text-white border-white">
+            <a
+              href="https://www.deedsmag.com/?fbclid=PAZXh0bgNhZW0CMTEAAaYdoDKwminG0JUNlCVq77hxl1iReWqX8VDMHbfcoSN9z1o2BBmXA4iIu-8_aem_AXTdAWkzcfrHxRaP2dFsdIkD4Haca-X-fU2MtBrEbYs6JC8H0Im5KcPzWMyRSE_5oH5YwlUK4Nlj2zn9eXUqUvfY"
+              class="block p-4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ list.title | upcase }}
+            </a>
+          </li>
+        {% elsif list.title == 'Merch' %}
+          <!-- Merch link is hidden, do nothing -->
+        {% else %}
+          <li class="border-b text-white border-white">
+            <a
+              href="{{ list.url }}"
+              class="block p-4"
+              aria-current="true"
+            >
+              {{ list.title | upcase }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      <div class="w-full pt-28 flex flex-col gap-4 items-center">
+        <img height="" width="" src="{{ 'deeds.png' | asset_url }}" alt="Default Logo Image" class="w-20">
+        <h1 class="font-medium text-xl capitalize text-white text-center">ARTS & DESIGN <br> 
+          FASHION <br> 
+          MUSIC <br> 
+          PHOTOGRAPHY & FILM</h1>
+      </div>
+    </ul>
+  </nav>
+
+{% comment %} <div
+    id="cart-navigation"
+    :class="{ 'visible': openCart, 'invisible': !openCart }"
+    x-cloak
+    class="fixed top-0 right-0 bottom-0 left-0 backdrop-blur-sm z-10"
+  >
+    <!-- UL Links -->
+    <div
+      class="absolute top-0 right-0 bottom-0 w-[100vw] md:w-[28rem]  pb-4 bg-black drop-shadow-xl z-10 transition-all"
+      :class="openCart ? 'translate-x-0' : 'translate-x-full'"
+    >
+      <div class="flex justify-between my-2 mx-5 items-center border-b border-white">
+        <h2 class="flex gap-1">{% render 'icon-shopping-bag' %}
+        <span class="cart-drawer-header-right-items">{{ cart.item_count }} items</span>  
+      </h2>
+        <button
+          @click="openCart = !openCart"
+          type="button"
+          class="bg-inherit p-2 inline-flex items-center justify-center focus:outline-none"
+        >
+          {% render 'icon-close-button' %}
+        </button>
+      </div>
+
+  </div>
+</div>  {% endcomment %}
+</div>
+<style>
+  .visible {
+    visibility: visible;
+  }
+  .invisible {
+    visibility: hidden;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const app = document.getElementById('app');
+    const menuButton = document.getElementById('menuButton');
+    const closeMenuButton = document.getElementById('closeMenuButton');
+    const mobileNavigation = document.getElementById('mobile-navigation');
+    const menu = document.getElementById('menu');
+    const cartButton = document.getElementById('cartButton');
+
+    let openMenu = false;
+    let openCart = false;
+
+    menuButton.addEventListener('click', function () {
+      openMenu = !openMenu;
+      toggleMenu();
+    });
+
+    closeMenuButton.addEventListener('click', function () {
+      openMenu = false;
+      toggleMenu();
+    });
+
+    mobileNavigation.addEventListener('click', function (event) {
+      if (event.target === mobileNavigation) {
+        openMenu = false;
+        toggleMenu();
+      }
+    });
+
+    cartButton.addEventListener('click', function () {
+      openCart = !openCart;
+      toggleCart();
+    });
+
+    function toggleMenu() {
+      if (openMenu) {
+        mobileNavigation.classList.add('visible');
+        mobileNavigation.classList.remove('invisible');
+        menu.classList.remove('-translate-x-full');
+        menu.classList.add('-translate-x-0');
+        app.classList.add('overflow-hidden');
+      } else {
+        mobileNavigation.classList.remove('visible');
+        mobileNavigation.classList.add('invisible');
+        menu.classList.add('-translate-x-full');
+        menu.classList.remove('-translate-x-0');
+        app.classList.remove('overflow-hidden');
+      }
+    }
+
+    function toggleCart() {
+      if (openCart) {
+        app.classList.add('overflow-hidden');
+      } else {
+        app.classList.remove('overflow-hidden');
+      }
+    }
+  });
+</script>

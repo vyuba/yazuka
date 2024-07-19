@@ -1,0 +1,283 @@
+{% comment %} {% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+
+<div class="flex text-white flex-col md:flex-row pt-14">
+  <div>
+    <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
+    {% for image in product.images %}
+      <a href="{{ image.src | img_url: 'large' }}">
+        <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+      </a>
+    {% endfor %}
+    {% render 'product-swipper' %}
+  </div>
+  <div class="flex flex-col">
+    <h1>{{ product.title }}</h1>
+    <form class="flex flex-col" action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+      <select class="text-black" name="id" id="productSelect">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+            <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+          {% else %}
+            <option disabled="disabled">{{ variant.title }} - sold out</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      {{ current_variant.price | money }}
+      <label class="text-black" for="Quantity">quantity</label>
+      <input class="text-black" type="number" id="Quantity" name="quantity" value="1" min="1">
+      <button
+        type="submit"
+        class="px-4 pr-20 bg-red-500 text-white font-medium text-lg capitalize hover:bg-white hover:text-black py-2"
+        name="add"
+        id="AddToCart"
+      >
+        Add to cart
+      </button>
+    </form>
+    <div class="text-white">{{ product.description }}</div>
+  </div>
+</div> {% endcomment %}
+<div id="main-product--{{ section.id }}" class="main-product pt-10">
+  <div class="flex items-center justify-center ml-4 my-4 w-10 h-10 text-white fill-white bg-white cursor-pointer hover:bg-red-600" onclick="history.back()">
+    {% render 'icon-back-arrow' %}
+  </div>
+  <div class="width flex-col md:flex-row">
+    <div class="main-product-left md:hidden">
+      {% if product.selected_or_first_available_variant.featured_image %}
+        {% assign featured = product.selected_or_first_available_variant.featured_image %}
+        <img height="" width="" class="main-product-image" id="product-image" src="{{ featured | image_url }}">
+      {% else %}
+        {% assign featured = product.featured_image %}
+        <img height="" width="" class="main-product-image" id="product-image" src="{{ featured | image_url }}">
+      {% endif %}
+
+      <ul class="main-product-image-thumbs">
+        {% for image in product.images %}
+          <li class="{% if image == featured %}selected{% endif %}"><img height="" width="" src="{{ image | image_url: master }}" ></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class=" md:grid grid-rows-1 hidden md:grid-cols-1 lg:grid-cols-2 gap-4 ml-4">
+      {% comment %} <img class="hidden md:block" src="{{ featured image | img_url: 'large' }}" alt="{{ featured image.alt | escape }}" height="" width="" id="ProductPhotoImg"> {% endcomment %}
+       {% for image in product.images %}
+        {% comment %} {% render 'product-swipper',   %} {% endcomment %}
+      {% endfor %} 
+  
+        {% for image in product.images %}   
+            <a class="hidden md:block " href="{{ image.src | img_url: 'large' }}">
+              <img class="" src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}" height="" width="">
+            </a>
+        {% endfor %}
+  
+    </div>
+
+    <div class="main-product-right md:ml-10 ml-0 pt-5 md:pt-0">
+      <h1 class="text-white text-2xl capitalize font-medium">{{ product.title }}</h1>
+
+      <div class="main-product-prices">
+        <p class="main-product-compare  {% unless product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}hide{% endunless %}">
+          {{ product.selected_or_first_available_variant.compare_at_price | money }}
+        </p>
+
+        <p class="main-product-price font-medium">
+          {{ product.selected_or_first_available_variant.price | money }}
+        </p>
+      </div>
+
+      {% form 'product', product %}
+        <input
+          class="main-product-id hide"
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+        >
+
+        {% if product.variants.size > 1 %}
+          <div class="main-product-options">
+            {% for option in product.options_with_values %}
+              <fieldset class="main-product-option">
+                <legend class="text-white">{{ option.name }}</legend>
+                <div class="main-product-option-radios">
+                  {% for value in option.values %}
+                    <div class="main-product-option-radio">
+                      <input
+                        {% if option.selected_value == value %}
+                          checked
+                        {% endif %}
+                        type="radio"
+                        name="{{ option.name }}"
+                        value="{{ value }}"
+                        class="hide"
+                        id="{{ option.name | handlize }}-{{ value | handlize }}"
+                      >
+                      <label for="{{ option.name | handlize }}-{{ value | handlize }}">
+                        {{ value }}
+                      </label>
+                    </div>
+                  {% endfor %}
+                </div>
+              </fieldset>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if product.metafields.custom.ring_fields %}
+          <div class="main-product-property">
+            <label>Engraving</label>
+            <input type="text" name="properties[Engraving]">
+          </div>
+
+          <div class="main-product-property">
+            <label>Size</label>
+            <select type="text" name="properties[Size]">
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+        {% endif %}
+
+        <div class="main-product-option">
+          <label class="text-white" for="quantity">Quantity</label>
+          <div>
+            <div class="quantity-selector">
+              <button type="button" class="quantity-selector-minus">
+                {%  render 'icon-minus' %}
+              </button>
+              <input
+                id="quantity"
+                name="quantity"
+                value="1"
+                class="quantity-selector-inputselector-"
+              >
+              <button type="button" class="quantity-selector-plus">
+                {%  render 'icon-plus' %}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button 
+          {% unless product.selected_or_first_available_variant.available %}
+            disabled
+          {% endunless %}
+          class="button full main-product-add-to-cart text-lg  capitalize"
+          type="submit"
+          class="main-product-add"
+        >
+          {% if product.selected_or_first_available_variant.available %}
+            {% comment %} {{ 'General.add_to_cart' | t }} {% endcomment %} add to cart
+          {% else %}
+            Out of Stock
+          {% endif %}
+        </button>
+      {% endform %}
+      <div class="main-product-description">
+        {{ product.description }}
+      </div>
+    </div>
+    </div>
+    {% section 'related-product' %}
+</div>
+<style>
+  .main-product-add-to-cart{
+    font-family: helvetica;
+    font-weight: 700;
+  }
+
+</style>
+<script>
+  
+  // Product json
+  var product = {{ product | json }}
+
+  // Root div
+  var root = document.querySelector('#main-product--{{ section.id }}')
+
+  // Radio change
+  root.querySelectorAll('.main-product-option input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+          // Find selected options
+          var selectedOptions = []
+
+          root.querySelectorAll('.main-product-option input[type="radio"]:checked').forEach(radio => {
+              selectedOptions.push(radio.value)
+          })
+
+          // Finding the matched variant
+          var matchedVariant = product.variants.find(variant => {
+              var pass = true
+
+              for (var i = 0; i < selectedOptions.length; i++) {
+                  if (selectedOptions.indexOf(variant.options[i]) === -1) {
+                      pass = false
+                      break
+                  }
+              }
+
+              return pass
+          })
+
+          // Change product form variant id
+          root.querySelector('.main-product-id').value = matchedVariant.id
+
+          // Change url
+          var url = new URLParse(window.location.href, true)
+          url.query.variant = matchedVariant.id
+          window.history.replaceState(null, null, url.toString());
+
+          // Change prices
+          root.querySelector('.main-product-price').textContent = formatMoney(matchedVariant.price, "{{ shop.money_format }}")
+          root.querySelector('.main-product-compare').textContent = formatMoney(matchedVariant.compare_at_price, "{{ shop.money_format }}")
+
+          matchedVariant.compare_at_price > matchedVariant.price ?
+              root.querySelector('.main-product-compare').classList.remove('hide') :
+              root.querySelector('.main-product-compare').classList.add('hide')
+
+          // Change image
+          if (matchedVariant.featured_image) {
+              root.querySelector('.main-product-image').setAttribute('src', matchedVariant.featured_image.src)
+              root.querySelector('.main-product-image-thumbs li.selected').classList.remove('selected')
+              root.querySelectorAll('.product-image-thumbs li')[matchedVariant.featured_image.position - 1].classList.add('selected')
+          }
+
+          // Change button
+          var add = root.querySelector(".main-product-add-to-cart")
+
+          if (matchedVariant.available) {
+              add.textContent = "Add to Cart"
+              add.disabled = false
+          } else {
+              add.textContent = "Out of Stock"
+              add.disabled = true
+          }
+      })
+  })
+
+  // Image change
+  root.querySelectorAll('.main-product-image-thumbs li').forEach(li => {
+      li.addEventListener('click', () => {
+          root.querySelector('.main-product-image-thumbs li.selected').classList.remove('selected')
+          li.classList.add('selected')
+
+          root.querySelector('.main-product-image').setAttribute('src', li.querySelector('img').getAttribute('src'))
+
+      })
+  })
+
+  // Quantity change
+  root.querySelector('.quantity-selector-plus').addEventListener('click', () => {
+      var currentVal = Number(root.querySelector('#quantity').value)
+      root.querySelector('#quantity').value = currentVal + 1
+  })
+
+  root.querySelector('.quantity-selector-minus').addEventListener('click', () => {
+      var currentVal = Number(root.querySelector('#quantity').value)
+
+      if (currentVal > 1) {
+          root.querySelector('#quantity').value = currentVal - 1
+      }
+  })
+</script>

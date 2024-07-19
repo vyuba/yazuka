@@ -1,0 +1,112 @@
+    <ul class="ticker-list list-none  flex-shrink-0 min-w-full flex justify-between items-center gap-[var(--gap)] animate-scroll">
+      <li class="minus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="plus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">+CULTURE UNWRAPPED</span>
+      </li>
+      <li class="plus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="minus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="plus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="minus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="plus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="minus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+    </ul>
+
+    <ul
+      class="ticker-list list-none flex-shrink-0 min-w-full flex justify-between items-center gap-[var(--gap)] animate-scroll"
+      aria-hidden="true"
+    >
+      <li class="minus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="plus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="plus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="minus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="plus flex items-center">
+        <span class="company ">CULTURE UNWRAPPEDA</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="minus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="plus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+      <li class="minus flex items-center">
+        <span class="company ">CULTURE UNWRAPPED</span>
+        <span class="price  mx-1">CULTURE UNWRAPPED</span>
+        <span class="change">CULTURE UNWRAPPED</span>
+      </li>
+    </ul>
+
+<style>
+  /* Custom animation for the stock ticker */
+  @keyframes scroll {
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  /* Apply the scroll animation to the ticker list */
+  .animate-scroll {
+    animation: scroll 60s linear infinite;
+  }
+
+  /* Pause animation on hover */
+  .stock-ticker:hover .animate-scroll {
+    animation-play-state: paused;
+  }
+
+  /* Custom variable for the gap between ticker items */
+  .stock-ticker {
+    --gap: 20px;
+  }
+</style>

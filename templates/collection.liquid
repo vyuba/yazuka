@@ -1,0 +1,24 @@
+<div class="pb-9 bg-black pt-14 h-full">
+  {% paginate collection.products by 50 %}
+    <div class="flex flex-row gap-1 items-center">
+      <div class="flex items-center justify-center ml-4 my-4 w-10 h-10 text-white fill-white bg-black cursor-pointer hover:bg-red-600" onclick="history.back()">
+        {% render 'icon-back-arrow' %}
+      </div>
+    <h1 class="font-bold text-white text-xl uppercase px-4 py-2">{{collection.title}}</h1>
+    </div>
+  <div class="grid  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
+      {% for product in collection.products %}
+        {% render 'product-card', product:product %}
+      {% else %}
+        <p>no matches</p>
+      {% endfor %}
+      {% if paginate.pages > 1 %}
+        {{ paginate | default_pagination }}
+      {% endif %}
+      </div>
+    {% endpaginate %}
+    </div>
+    {% comment %} <div class="stock-ticker md:hidden bg-black text-red-500  overflow-hidden select-none flex gap-[var(--gap)] py-1 border-y border-white ">
+      {% render 'infinite-scroll' %}
+    </div> {% endcomment %}
+
