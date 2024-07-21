@@ -8,7 +8,7 @@
                 >
             </div>
             {% if shop.customer_accounts_enabled == true %}
-              <a href="{{ routes.account_login_url }}" class="flex items-center justify-center text-base text-gray-500 hover:text-gray-900">{% render "icon-account" %}</a>
+              <a href="{{ routes.account_login_url }}" class="">{% render "icon-account" %}</a>
             {% endif %}
             <a
               class="custom-header-search-icon Header__Icon Icon-Wrapper Icon-Wrapper--clickable"
@@ -365,65 +365,7 @@
 }
 /* FIN ICON-MENU */
 
-@keyframes lazyLoader {
-  0%,
-  100% {
-    transform: translateX(-50%);
-  }
-  50% {
-    transform: translateX(100%);
-  }
-}
 
-.image-container {
-  position: relative;
-  width: 600px; /* Adjust the width as needed */
-  height: 600px; /* Adjust the height as needed */
-  overflow: hidden;
-}
-
-.image--lazyLoading {
-  width: 100%; /* Adjust the width as needed */
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  object-fit: cover;
-  opacity: 0;
-}
-
-.image__loader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image__loader::after {
-  content: "";
-  display: block;
-  width: 50%;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(255, 255, 255, 0.1) 100%
-  );
-  animation: lazyLoader 3s infinite cubic-bezier(0.43, 0.43, 0.25, 0.99);
-}
-
-.image-loaded {
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
 
 .back {
   background-image: url("https://unsplash.com/photos/man-in-black-leather-jacket-wearing-black-cowboy-hat-qZHagBnDt7Q");

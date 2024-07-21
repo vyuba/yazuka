@@ -1,13 +1,19 @@
 <div class="product-grid-item text-white hover:text-red-600">
   <a href="{{ product.url }}">
-<img src="{{ product.featured_image | image_url: width: 400 }}" height="" width="">
-
-<span class="product-grid-item-text">
-  <h3>{{ product.title | highlight: search.terms }}</h3>
-  <p class="product-grid-item-price">{{ product.price | money }}</p>
-</span>
-</a>
+    <div class="image-container">
+      <img class="lazyImage" src="{{ product.featured_image | image_url: width: 400 }}" alt="Description of the image" class="image--lazyLoading" height="" width="">
+      {% comment %} <div class="image__loader"></div> {% endcomment %}
+    </div>
+    <span class="product-grid-item-text">
+      <h3>{{ product.title | highlight: search.terms }}</h3>
+      <p class="product-grid-item-price">{{ product.price | money }}</p>
+    </span>
+  </a>
 </div>
+{% comment %} <div class="image-container">
+  <img id="lazyImage" src="https://media.istockphoto.com/id/1500285927/photo/young-woman-a-university-student-studying-online.jpg?s=612x612&w=is&k=20&c=-GfuHGYAUT-El0IaGO8Yo_TLQhjLpu10HFyKtqrUXTE=" alt="Description of the image" class="image--lazyLoading">
+  <div class="image__loader"></div>
+</div> {% endcomment %}
 {% comment %} <div class=" hover:text-red-600 text-white"> 
   <div class="">
     <a href="{{ product.url | within: collection }}">
@@ -21,3 +27,64 @@
     {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
   </div>
 </div> {% endcomment %}
+
+<style>
+  @keyframes lazyLoader {
+  0%,
+  100% {
+    transform: translateX(-50%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.image--lazyLoading {
+  width: 100%; /* Adjust the width as needed */
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  opacity: 0;
+}
+/* 
+.image__loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image__loader::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  animation: lazyLoader 3s infinite cubic-bezier(0.43, 0.43, 0.25, 0.99);
+}
+
+.image-loaded {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+} */
+</style>

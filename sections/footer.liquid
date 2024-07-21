@@ -44,7 +44,8 @@
                   class="newsletter-form__button field__button"
                   name="commit"
                   id="Subscribe"
-               > submit </button>
+               > submit
+               </button>
                {%- if form.errors -%}
                 <small class="newsletter-form__message form__message" id="ContactFooter-error">
                   {%- render 'icon-error' -%}
@@ -77,17 +78,23 @@
 
   .newsletter-container{
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-block: 10px;
   }
   .newsletter{
-    background-color: antiquewhite;
+    border: 1px solid black;
     width: 300px;
-    padding-block: 10px;
     align-items: center;
     padding-inline: 10px;
   }
   input{
     height: 100%;
+    padding-block: 10px;
+  }
+  
+  .newsletter-form__button{
+    /* background: black;
+    color: white; */
   }
 
   .socails-container > p{
