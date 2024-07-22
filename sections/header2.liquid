@@ -46,7 +46,7 @@
             </div>
             <div id="myDiv" class="">
               {%- for link in linklists['main-menu'].links -%}
-                  <li class="{% if link.active %} link-active {% else %} link-not-active {% endif %}" >
+                  <li class=" link {% if link.active %} link-active {% else %} link-not-active {% endif %}" >
                     {%- if link.links != blank -%}
                       <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                         <summary
@@ -378,6 +378,11 @@
 .link-active{
   background-color: whitesmoke;
 }
+
+.link > a{
+  width: 100%;
+  display: block;
+}
 .link-not-active{
   background-color: inherit;
 }
@@ -389,6 +394,13 @@ details > summary {
   align-items: center;
   width: 100%;
 }
+/* summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-betwenn;
+  align-items: center;
+  width: 100%;
+} */
 
 summary::marker{
   display: none;
