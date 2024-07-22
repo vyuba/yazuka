@@ -9,7 +9,7 @@
       <div class="cart-drawer-header-right">
         
 
-        <button class="cart-drawer-header-right-close  hover:bg-red-500" type="button">
+        <button class="cart-drawer-header-right-close " type="button">
           {% render 'icon-close-button' %}
         </button>
       </div>
@@ -90,7 +90,7 @@
             <h3>Shipping calculated at checkout</h3>
             {% comment %} <span>{{ cart.total_price | money }}</span> {% endcomment %}
           </div>
-          <button type="submit" name="checkout" class="cart-drawer-checkout cart-drawer-button bg-red-600 text-white text-lg hover:text-red-600 ">
+          <button type="submit" name="checkout" class="cart-drawer-checkout cart-drawer-button ">
             <div class="" type="submit" name="checkout" class="cart-drawer-button font-bold capitalize">Checkout</div>
             <p class=" ">{{ cart.total_price | money }}</p>
           </button>
@@ -102,39 +102,53 @@
 </div>
 
 <style>
-  .cart-drawer {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    backdrop-filter: blur(5px);
-    z-index: 1000000;
-    display: none; /* Initially hidden */
-  }
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000000;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s;
+}
 
-  .cart-drawer--active {
-    display: block; /* Visible when toggled */
-  }
+.cart-drawer--active {
+  visibility: visible;
+  opacity: 1;
+}
 
-  .cart-drawer-box {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw; /* Full viewport width */
-    max-width: 28rem; /* Maximum width for medium and larger screens */
-    padding-bottom: 1rem; /* Padding bottom */
-    background-color: black;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    transition: transform 0.3s ease; /* Smooth transition */
-    transform: translateX(100%);
-  }
+.cart-drawer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
 
-  .cart-drawer--active .cart-drawer-box {
-    transform: translateX(0); 
-  }
+.cart-drawer-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  max-width: 28rem;
+  padding-bottom: 1rem;
+  background-color: white;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+}
+
+.cart-drawer--active .cart-drawer-box {
+  transform: translateX(0);
+}
 
   .cart-drawer-header {
     width: 100%;
@@ -146,7 +160,7 @@
   }
 
   .cart-drawer-header h2 {
-    color: white;
+    color: black;
     /* flex: 1; */
     font-weight: 500;
     font-size: 18px;
@@ -170,6 +184,10 @@
     cursor: pointer;
     display: grid;
     place-items: center;
+
+    &:hover{
+      background-color: whitesmoke;
+    }
   }
 
   .cart-drawer-header-right-close:hover {
@@ -239,11 +257,11 @@
   }
 
   .cart-drawer-item-main-flex-left h3 a {
-    color: white;
+    color: black;
   }
 
   .cart-drawer-item-main-flex-left span {
-    color: white;
+    color: black;
     font-size: 15px;
     margin-top: 4px;
     display: block;
@@ -251,7 +269,7 @@
 
   .cart-drawer-item-main-flex-right span {
     font-weight: 500;
-    color: white;
+    color: black;
     font-size: 14px;
   }
     .box{
@@ -275,24 +293,27 @@
      place-items: center;
      padding-inline: 4px;
     &:hover{
-      background-color: red;
+      background-color: whitesmoke;
     }
     }
   .cart-drawer-quantity-selector {
     background-color: white;
     display: grid;
   }
-
+  
   .cart-drawer-quantity-selector button {
     height: full;
+    border: 1px solid black;
     display: grid;
     place-items: center;
     &:hover{
       background-color: whitesmoke;
     }
   }
-
+  
   .cart-drawer-quantity-selector input {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -312,8 +333,8 @@
     width: 100%;
     /* padding: 10px; */
     margin-top: auto;
-    border-top: 1px solid white;
-    background-color: black;
+    border-top: 1px solid black;
+    background-color: white;
     z-index: 100;
     padding-inline: 10px;
     padding-top: 10px;
@@ -334,13 +355,13 @@
 
   .cart-drawer-footer-row h3 {
     font-weight: 400;
-    color: white;
+    color: black;
     font-size: 16px;
   }
 
   .cart-drawer-footer-row span {
     font-weight: 500;
-    color: white;
+    color: black;
     font-size: 14px;
   }
   .cart-drawer-checkout {
@@ -354,10 +375,12 @@
     font-family: helvetica ;
     font-weight: 700;
     padding-inline: 15px;
+    background-color: black;
+    color: white;
     &:hover{
       background-color: white;
-      color: red;
-      border: red 1px solid;
+      color: black;
+      border: black 1px solid;
     }
   }
 

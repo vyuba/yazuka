@@ -1,12 +1,17 @@
+<div class="announcement-bar">
+  {% render 'infinite-scroll' %}
+</div>
 <div class="floating-nav-container">
         <nav class="navbar">
           <div class="navbar-conatainer">
-            <div class="header-logo-wrapper">
+            <a  class="header-logo-wrapper" href="{{shop.url}}">
+              <div>
                 <img src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/YAZUKA.png?v=1674193263" alt=""
-                height="40px"
-                width="40px"
-                >
-            </div>
+                  height="40px"
+                  width="40px"
+                  >
+              </div>
+            </a>
             {% if shop.customer_accounts_enabled == true %}
               <a href="{{ routes.account_login_url }}" class="">{% render "icon-account" %}</a>
             {% endif %}
@@ -16,7 +21,8 @@
               id="toggle-search"
               aria-label="Search"
             >
-              {% render "icon-search" %}
+                <span class="icon-search">{% render "icon-search" %}</span>
+                <span class="icon-close" style="display: none;">{% render "icon-close-button" %}</span>
             </a>
 
               <span class="hidden-phone" onclick="openCartDrawer()">
@@ -32,27 +38,10 @@
                 </label>
           </div>
           <div id="search-box">
-            <svg
-              class="Icon Icon--search"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <g>
-                <path
-                  d="M18.031 16.617L22.314 20.899L20.899 22.314L16.617 18.031C15.0237 19.3082 13.042 20.0029 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20.0029 13.042 19.3082 15.0237 18.031 16.617ZM16.025 15.875C17.2941 14.5699 18.0029 12.8204 18 11C18 7.132 14.867 4 11 4C7.132 4 4 7.132 4 11C4 14.867 7.132 18 11 18C12.8204 18.0029 14.5699 17.2941 15.875 16.025L16.025 15.875V15.875Z"
-                  fill="#09121F"
-                ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_624_4721">
-                  <rect width="24" height="24" fill="white"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-            <input class="search-input" placeholder="search" />
+            {% render "icon-search" %}
+            <form action="/search" method="get" role="search">
+            <input class="search-input" name="q" placeholder="search" value="{{ search.terms | escape }}" />
+            </form>
           </div>
           <div id="myDiv" class="">
             {%- for link in linklists['main-menu'].links -%}
@@ -183,7 +172,7 @@
   justify-content: space-between;
   align-items: center;
   &:hover {
-    background-color: gray;
+    background-color: whitesmoke;
   }
 }
 .floating-nav-container {
@@ -376,7 +365,7 @@
 }
 
 .link-active{
-  background-color: yellow;
+  background-color: whitesmoke;
 }
 .link-not-active{
   background-color: inherit;
@@ -448,9 +437,48 @@ summary::marker{
   width: 20px;
 }
 
+.icon-search, .icon-close {
+  display: inline-block;
+}
+
+.icon-close {
+  display: none;
+}
+
+.announcement-bar {
+  display: flex;
+  background-color: black;
+  color: #ef4444; /* This is the Tailwind red-500 color */
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+  padding-top: 0.25rem; /* py-1 */
+  padding-bottom: 0.25rem; /* py-1 */
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
 {% endstylesheet %}
 
 <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  const searchToggle = document.getElementById('toggle-search');
+  const searchIcon = searchToggle.querySelector('.icon-search');
+  const closeIcon = searchToggle.querySelector('.icon-close');
+
+  searchToggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (searchIcon.style.display !== 'none') {
+      searchIcon.style.display = 'none';
+      closeIcon.style.display = 'inline-block';
+      // Add code here to show your search interface
+    } else {
+      searchIcon.style.display = 'inline-block';
+      closeIcon.style.display = 'none';
+      // Add code here to hide your search interface
+    }
+  });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const detailsElements = document.querySelectorAll('details[id^="Details-menu-drawer-menu-item-"]');
