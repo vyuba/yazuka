@@ -1,11 +1,81 @@
-<div class="px-4">
-  <h1 class="text-3xl font-bold">{{ page.title }}</h1>
-  <div>
-    <ul class="text-lg font-medium">
-      <li><a href="">@lipsom elkjfs</a></li>
-      <li><a href="">@lipsom elkjfs</a></li>
-      <li><a href="">@lipsom elkjfs</a></li>
-      <li><a href="">@lipsom elkjfs</a></li>
-    </ul>
-  </div>
+<div class="contact-page">
+  <div class="contact-form">
+  <h1 class="contact-title">CONTACT</h1>
+  <form class="contact-form__inner">
+    <div class="contact-form__row">
+      <input type="text" class="contact-form__input" placeholder="Your name" required>
+      <input type="email" class="contact-form__input" placeholder="Your email" required>
+    </div>
+    <input type="tel" class="contact-form__input" placeholder="Your phone (optional)">
+    <textarea class="contact-form__textarea" placeholder="Your message" required></textarea>
+    <button type="submit" class="contact-form__submit">SEND MESSAGE</button>
+  </form>
 </div>
+</div>
+
+<style>
+  .contact-page{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.contact-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.contact-form__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form__row {
+  display: flex;
+  gap: 15px;
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.contact-form__textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.contact-form__submit {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-form__submit:hover {
+  background-color: #333;
+}
+
+@media (max-width: 600px) {
+  .contact-form__row {
+    flex-direction: column;
+  }
+}
+</style>

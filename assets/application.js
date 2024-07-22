@@ -271,26 +271,82 @@ function addCartDrawerListeners() {
 addCartDrawerListeners();
 
 // Event listener for adding items to the cart
+// document.querySelectorAll('form[action="/cart/add"]').forEach((form) => {
+//   form.addEventListener("submit", async (e) => {
+//     e.preventDefault();
+
+//     // Submit form with ajax
+//     await fetch("/cart/add", {
+//       method: "post",
+//       body: new FormData(form),
+//     });
+
+//     // Get cart count
+//     const res = await fetch("/cart.js");
+//     const cart = await res.json();
+//     updateCartItemCounts(cart.item_count);
+
+//     // Update cart
+//     await updateCartDrawer();
+
+//     // Open cart drawer
+//     openCartDrawer();
+//   });
+// });
+
 document.querySelectorAll('form[action="/cart/add"]').forEach((form) => {
+  const addToCartButton = form.querySelector('button[type="submit"]');
+  const originalButtonText = addToCartButton.innerHTML;
+  const loaderHTML = `
+    <div style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 5px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width: 100%; height: 100%;">
+        <radialGradient id="a12" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)">
+          <stop offset="0" stop-color="#FFFFFF"></stop>
+          <stop offset=".3" stop-color="#FFFFFF" stop-opacity=".9"></stop>
+          <stop offset=".6" stop-color="#FFFFFF" stop-opacity=".6"></stop>
+          <stop offset=".8" stop-color="#FFFFFF" stop-opacity=".3"></stop>
+          <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"></stop>
+        </radialGradient>
+        <circle transform-origin="center" fill="none" stroke="url(#a12)" stroke-width="19" stroke-linecap="round" stroke-dasharray="200 1000" stroke-dashoffset="0" cx="100" cy="100" r="70">
+          <animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="2" values="360;0" keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite"></animateTransform>
+        </circle>
+        <circle transform-origin="center" fill="none" opacity=".2" stroke="#FFFFFF" stroke-width="19" stroke-linecap="round" cx="100" cy="100" r="70"></circle>
+      </svg>
+    </div>
+  `;
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Submit form with ajax
-    await fetch("/cart/add", {
-      method: "post",
-      body: new FormData(form),
-    });
+    // Show loader
+    addToCartButton.innerHTML = `${loaderHTML} Adding...`;
+    addToCartButton.disabled = true;
 
-    // Get cart count
-    const res = await fetch("/cart.js");
-    const cart = await res.json();
-    updateCartItemCounts(cart.item_count);
+    try {
+      // Submit form with ajax
+      await fetch("/cart/add", {
+        method: "post",
+        body: new FormData(form),
+      });
 
-    // Update cart
-    await updateCartDrawer();
+      // Get cart count
+      const res = await fetch("/cart.js");
+      const cart = await res.json();
+      updateCartItemCounts(cart.item_count);
 
-    // Open cart drawer
-    openCartDrawer();
+      // Update cart
+      await updateCartDrawer();
+
+      // Open cart drawer
+      openCartDrawer();
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle error (e.g., show error message to user)
+    } finally {
+      // Reset button state
+      addToCartButton.innerHTML = originalButtonText;
+      addToCartButton.disabled = false;
+    }
   });
 });
 

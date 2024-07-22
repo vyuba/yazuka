@@ -2300,14 +2300,15 @@ select {
   line-height: 46px;
   padding: 0 24px;
   /* border-radius: calc(var(--radius) / 2); */
-  text-align: left;
+  text-align: center;
   background: var(--buttonBackground);
   color: var(--buttonText);
   font-weight: 500;
+  border: red 2px solid;
   &:hover{
     background-color: white;
     color: red;
-    border: red 1px solid;
+    border: red 2px solid;
   }
 }
 
@@ -2504,7 +2505,7 @@ select {
 
 .main-product-price {
   font-size: 20px;
-  color: white;
+  color: black;
 }
 
 .main-product-compare {
@@ -2515,7 +2516,7 @@ select {
 
 .main-product-description {
   margin: 20px 0;
-  color: white;
+  color: black;
 }
 
 .main-product-option-radios {

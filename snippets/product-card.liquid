@@ -1,7 +1,7 @@
 <div class="product-grid-item text-white hover:text-red-600">
   <a href="{{ product.url }}">
     <div class="image-container">
-      <img class="lazyImage" src="{{ product.featured_image | image_url: width: 400 }}" alt="Description of the image" class="image--lazyLoading" height="" width="">
+      <img  src="{{ product.featured_image | image_url: width: 400 }}" alt="Description of the image" height="" width="" loading="lazy">
       {% comment %} <div class="image__loader"></div> {% endcomment %}
     </div>
     <span class="product-grid-item-text">

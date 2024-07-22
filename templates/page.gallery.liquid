@@ -1,10 +1,164 @@
 <section>
-    <div>preye</div>
+    <h1>Gallery</h1>
+    <ul class="gallery-pitures">
+	<li>
+		<a class="image-link"  href="">
+			<figure>
+				<img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/90C82A6B-165F-4967-8AF0-AB51890B49CF.jpg?v=1687383114' width="" height="">
+				<figcaption>Mountains and volcanos</figcaption>
+			</figure>
+		</a>
+	</li>
+	<li>
+		<a class="image-link" href="">
+			<figure>
+				<img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_2718.heic?v=1687383200' width="" height="">
+				<figcaption>Adventure getaways</figcaption>
+			</figure>
+		</a>
+	</li>
+	<li>
+		<a class="image-link"  href="">
+			<figure>
+				<img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_1023.heic?v=1687383403' width="" height="">
+				<figcaption>Forest escapes</figcaption>
+			</figure>
+		</a>
+	</li>
+	<li>
+		<a class="image-link"  href="">
+			<figure>
+				<img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_0450.heic?v=1687383323' width="" height="">
+				<figcaption>Hiking trails</figcaption>
+			</figure>
+		</a>
+	</li>
+	<li>
+		<a class="image-link"  href="">
+			<figure>
+				<img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/1BC8DF1B-EAF3-47BB-B4F0-2B74ED833E26.jpg?v=1687380664' width="" height="">
+				<figcaption>Street scenes</figcaption>
+			</figure>
+		</a>
+	</li>
+	<li>
+		<a class="image-link"  href="">
+			<figure>
+				<img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_2712_1.jpg?v=1678705839' width="" height="" alt='Fashionable-looking girl with blond hair and pink sunglasses'>
+				<figcaption>Trending</figcaption>
+			</figure>
+		</a>
+	</li>
+</ul>
 </section>
 
 <style>
     section{
         width: 100%;
         height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 100px;
+        flex-direction: column;
     }
+
+    section > h1{
+        font-size: 30px;
+        font-weight: 700;
+        padding-bottom: 10px;
+    }
+
+figure > img {
+	width: 100%;
+	display: block;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	transition: transform 1000ms;
+}
+
+.gallery-pitures{
+	list-style: none;
+	margin: 0;
+	padding: 10px;
+	display: grid;
+	gap: 0.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	max-width: 100%;
+	width: 70rem;
+}
+
+figure {
+	margin: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+figure::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 200%;
+	height: 200%;
+	background: rgba(0, 0, 0, 0.5);
+	transform-origin: center;
+	opacity: 0;
+	transform: scale(2);
+	transition: opacity 300ms;
+}
+
+figcaption {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	place-items: center;
+	text-align: center;
+	padding: 1rem;
+	color: white;
+	font-size: 1.2rem;
+	z-index: 1;
+	opacity: 0;
+	transition: opacity 600ms, transform 600ms;
+}
+
+.image-link:is(:hover, :focus) figure::after {
+	opacity: 1;
+}
+
+.image-link:is(:hover, :focus) figcaption {
+	opacity: 1;
+	transition: opacity 600ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	figcaption {
+		transform: translate3d(0, 2rem, 0);
+	}
+	
+	figure::after {
+		border-radius: 50%;
+		opacity: 1;
+		transform: scale(0);
+		transition: transform 900ms;
+	}
+	
+	.image-link:is(:hover, :focus) figure::after {
+		transform: scale(2.5);
+	}
+
+	.image-link:is(:hover, :focus) figcaption {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+		transition: opacity 600ms 400ms, transform 600ms 400ms;
+	}
+
+	.image-link:is(:hover, :focus) img {
+		transform: scale(1.2);
+	}
+}
 </style>
