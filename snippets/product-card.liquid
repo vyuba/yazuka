@@ -1,8 +1,35 @@
+{% comment %} <div class="product-grid-item text-white hover:text-red-600">
+  <a href="{{ product.url }}">
+    <div class="image-container">
+      <img  src="{{ product.featured_image | image_url: width: 400 }}" alt="Description of the image" height="" width="" loading="lazy"> {% endcomment %}
+      {% comment %} <div class="image__loader"></div> {% endcomment %}
+    {% comment %} </div>
+    <span class="product-grid-item-text">
+      <h3>{{ product.title | highlight: search.terms }}</h3>
+      <p class="product-grid-item-price">{{ product.price | money }}</p>
+    </span>
+  </a>
+</div> {% endcomment %}
+
 <div class="product-grid-item text-white hover:text-red-600">
   <a href="{{ product.url }}">
     <div class="image-container">
-      <img  src="{{ product.featured_image | image_url: width: 400 }}" alt="Description of the image" height="" width="" loading="lazy">
-      {% comment %} <div class="image__loader"></div> {% endcomment %}
+      <img src="{{ product.featured_image | image_url: width: 400 }}" alt="Description of the image" height="" width="" loading="lazy">
+      <div class="image__loader">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <radialGradient id="a12" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)">
+            <stop offset="0" stop-color="#FF0404"></stop>
+            <stop offset=".3" stop-color="#FF0404" stop-opacity=".9"></stop>
+            <stop offset=".6" stop-color="#FF0404" stop-opacity=".6"></stop>
+            <stop offset=".8" stop-color="#FF0404" stop-opacity=".3"></stop>
+            <stop offset="1" stop-color="#FF0404" stop-opacity="0"></stop>
+          </radialGradient>
+          <circle transform-origin="center" fill="none" stroke="url(#a12)" stroke-width="19" stroke-linecap="round" stroke-dasharray="200 1000" stroke-dashoffset="0" cx="100" cy="100" r="70">
+            <animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="2" values="360;0" keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite"></animateTransform>
+          </circle>
+          <circle transform-origin="center" fill="none" opacity=".2" stroke="#FF0404" stroke-width="19" stroke-linecap="round" cx="100" cy="100" r="70"></circle>
+        </svg>
+      </div>
     </div>
     <span class="product-grid-item-text">
       <h3>{{ product.title | highlight: search.terms }}</h3>
@@ -10,6 +37,8 @@
     </span>
   </a>
 </div>
+
+
 {% comment %} <div class="image-container">
   <img id="lazyImage" src="https://media.istockphoto.com/id/1500285927/photo/young-woman-a-university-student-studying-online.jpg?s=612x612&w=is&k=20&c=-GfuHGYAUT-El0IaGO8Yo_TLQhjLpu10HFyKtqrUXTE=" alt="Description of the image" class="image--lazyLoading">
   <div class="image__loader"></div>
@@ -38,7 +67,7 @@
     transform: translateX(100%);
   }
 }
-
+/* 
 .image-container {
   position: relative;
   width: 100%;
@@ -46,8 +75,8 @@
 }
 
 .image--lazyLoading {
-  width: 100%; /* Adjust the width as needed */
-  height: 100%;
+  width: 100%; Adjust the width as needed */
+  /* height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -55,7 +84,39 @@
   bottom: 0;
   object-fit: cover;
   opacity: 0;
+} */
+
+.image-container {
+  position: relative;
 }
+
+.image__loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.image__loader svg {
+  width: 50px;
+  height: 50px;
+}
+
+.image-container img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-container img.loaded {
+  opacity: 1;
+}
+
+
 /* 
 .image__loader {
   position: absolute;

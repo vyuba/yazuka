@@ -370,16 +370,26 @@ document.getElementById("toggle-search").addEventListener("click", function () {
   div.classList.toggle("active");
 });
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   const img = document.getElementsByClassName("lazyImage");
-//   console.log(img)
-//   img.onload = function () {
-//     img.classList.remove("image--lazyLoading");
-//     img.classList.add("image-loaded");
-//     const loader = document.querySelector(".image__loader");
-//     if (loader) {
-//       loader.style.display = "none";
-//     }
-//   };
-//   img.src = img.getAttribute("src"); // Trigger the image load
-// });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const images = document.querySelectorAll('.image-container img');
+  
+  images.forEach(img => {
+    if (img.complete) {
+      imageLoaded(img);
+    } else {
+      img.addEventListener('load', function() {
+        imageLoaded(img);
+      });
+    }
+  });
+});
+
+function imageLoaded(img) {
+  img.classList.add('loaded');
+  const loader = img.parentNode.querySelector('.image__loader');
+  if (loader) {
+    loader.style.display = 'none';
+  }
+}

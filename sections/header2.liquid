@@ -26,7 +26,7 @@
                   <span class="icon-close" style="display: none;">{% render "icon-close-button" %}</span>
               </a>
   
-                <span class="hidden-phone" onclick="openCartDrawer()">
+                <span class="hidden-phone {%if cart.item_count !=0 %}badge{% endif %}" value="{{ cart.item_count }}"  onclick="openCartDrawer()">
                     {% render "icon-shopping-bag" %}
                   </span>
                 <span class="Header__CartDot"></span>
@@ -153,6 +153,25 @@
   </div>
 </div>
 {% stylesheet %}
+
+.hidden-phone{
+  position: relative;
+}
+
+.badge:after{
+        content:attr(value);
+        font-size:10px;
+        color: #fff;
+        background: red;
+        border-radius:50%;
+        padding: 0 5px;
+        position:absolute;
+        left:8px;
+        bottom:0.5px;
+        opacity:0.9;
+}
+
+
 .navber-top{
   position: fixed;
   top: 0;
