@@ -1,6 +1,6 @@
 <div class="navber-top">
-  <div class="announcement-bar" style=" background-color:  {%if 'index' == template %}#E21010{% else %} white{% endif %}; 
-  color: {%if 'index' == template %} white {% else %} #E21010 {% endif %};">
+  <div class="announcement-bar" style="background-color: {% if template == 'index' %} #E21010 {% elsif template == 'product' %} #E21010 {% else %} white {% endif %}; 
+  color: {% if template == 'index' %} white {% elsif template == 'product' %} white {% else %} #E21010 {% endif %};">
     {% render 'infinite-scroll' %}
   </div>
   <div class="floating-nav-container">
@@ -231,7 +231,7 @@
 }
 
 .navbar {
-  background-color: white ;
+  background-color: #FAF8F5 ;
   width: 100%;
   /* padding: 10px; */
   max-width: 387px;
@@ -263,13 +263,13 @@
   /* gap: 12px; */
   /* padding-block: 10px;
   padding-inline: 10px; */
-  /* background-color: white;
+  /* background-color: #FAF8F5;
   border-radius: 11px; */
   color: #fff;
 }
 
 .navbar-active{
-  background-color: white;
+  background-color: #FAF8F5;
 }
 .header-logo-wrapper {
   flex: 1;
@@ -284,7 +284,7 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-in-out;
-  background-color: white;
+  background-color: #FAF8F5;
   padding-inline: 10px;
   border-radius:0 0 11px 11px ;
     }

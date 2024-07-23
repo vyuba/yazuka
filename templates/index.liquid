@@ -37,8 +37,31 @@
             <div class="flex flex-row gap-1 items-center">
             <h1 class="font-bold text-white text-xl uppercase px-4 py-2">New Arrivals</h1>
             </div>
-              <div class="grid  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
-                {% for product in collections.all.products %}
+              <div class=" new-products-in-mobile-view   grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
+                {% for product in collections.all.products limit: 2 %}
+                  {% if product.tags contains 'New' %}
+                    {% comment %} {% render 'product-card', product: product %} {% endcomment %}
+                   <li class="product">
+                    <a href="{{ product.url }}">
+                      <img
+                        class="product__img"
+                        src="{{ product.featured_image | image_url: width: 300, height: 300 }}"
+                        alt="{{ product.featured_image.alt }}"
+                        width=""
+                        height=""
+                      />
+
+                      <p class="product__title">{{ product.title }}</p>
+                      <p class="product__price">{{ product.price | money}}</p>
+                    </a>
+                  </li> 
+                  {% endif %}
+                {% else %}
+                  <p>no matches</p>
+                {% endfor %}
+              </div>
+              <div class="new-products-in-laptop-view  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
+                {% for product in collections.all.products limit: 5 %}
                   {% if product.tags contains 'New' %}
                     {% comment %} {% render 'product-card', product: product %} {% endcomment %}
                    <li class="product">
@@ -115,34 +138,22 @@
       display: none;
     }
     
-    @media (min-width: 1024px) {
-      .img-banner{
-        display: none;
-      }
-      .img-banner2{
-        display: block;
-      }
-      .banner{
-        height: calc(100vh - 120px);
-      }
+    .banner-container{
+      z-index: 1000;
     }
     
-  .banner-container{
-    z-index: 1000;
-  }
-
-  .logo{
-    font-size: 100px;
-    text-transform: capitalize;
-    position: fixed;
-    color: white;
-    z-index: 1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .collection-container{
-    z-index: 1;
+    .logo{
+      font-size: 100px;
+      text-transform: capitalize;
+      position: fixed;
+      color: white;
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .collection-container{
+      z-index: 1;
     font-size: 15px;
     font-weight: 800;
     color: white;
@@ -152,7 +163,7 @@
     padding-bottom: 20px;
     text-transform: uppercase;
   }
-
+  
   .products{
     width: 100%;
     height: fit-content;
@@ -168,4 +179,31 @@
     z-index: 2;
     position: relative;
   }
-</style>
+  
+  .new-products-in-mobile-view{
+    display: grid;
+  }
+  .new-products-in-laptop-view{
+    display: none;
+  }
+
+  
+  @media (min-width: 1024px) {
+    .img-banner{
+      display: none;
+    }
+    .img-banner2{
+      display: block;
+    }
+    .banner{
+      height: calc(100vh - 120px);
+    }
+    .new-products-in-laptop-view{
+    display: grid;
+    }
+    .new-products-in-mobile-view{
+     display: none;
+    }
+  }
+  
+  </style>
