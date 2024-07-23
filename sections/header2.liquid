@@ -48,7 +48,7 @@
             <div id="myDiv" class="">
               {%- for link in linklists['main-menu'].links -%}
                 {% if link.title != 'Home' or template != 'index'%}     
-                  <li class=" link {% if link.active %} link-active {% else %} link-not-active {% endif %}" >
+                <li class=" link {% if link.active %} link-active {% else %} link-not-active {% endif %}" > {% render "icon-dash" %}
                     {%- if link.links != blank -%}
                       <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                         <summary
@@ -416,6 +416,11 @@
   background-color: whitesmoke;
 }
 
+.link{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .link > a{
   width: 100%;
   display: block;
