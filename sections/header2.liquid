@@ -1,5 +1,6 @@
 <div class="navber-top">
-  <div class="announcement-bar">
+  <div class="announcement-bar" style=" background-color:  {%if 'index' == template %}#E21010{% else %} white{% endif %}; 
+  color: {%if 'index' == template %} white {% else %} #E21010 {% endif %};">
     {% render 'infinite-scroll' %}
   </div>
   <div class="floating-nav-container">
@@ -147,7 +148,13 @@
                       </li>
                     {% endif %}
                 {%- endfor -%}
-              {% comment %} <div class="menu-tab">This is a toggleable div.</div> {% endcomment %}
+              <div class="menu-tab">
+                  <img src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/YAZUKA.png?v=1674193263" alt=""
+                    height="200px"
+                    width="200px"
+                    >
+                    <p>&copy; {{ "now" | date: "%Y" }} yaziika store. All rights reserved.</p>
+              </div>
             </div>
           </nav>
   </div>
@@ -218,16 +225,15 @@
 
 .floating-nav-container .navbar {
   max-width: 380px;
-  border: 1px solid #000;
+  border-radius:11px ;
+  border: 2px solid #000;
   width: 100%;
 }
 
 .navbar {
-  background-color:  transparent ;
+  /* background-color:  transparent ; */
   width: 100%;
   /* padding: 10px; */
-  padding-block: 10px;
-  padding-inline: 10px;
   max-width: 387px;
   /* padding-inline: 10px; */
   /* padding-block-end: 10px; */
@@ -235,9 +241,6 @@
   /* border: 1px solid #fff; */
 }
 
-.navbar-active{
-  background-color: white;
-}
 
 @media only screen and (max-width: 767px) {
   .floating-nav-container .navbar {
@@ -254,35 +257,42 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding-block: 10px;
+  padding-inline: 10px;
   /* gap: 12px; */
   /* padding-block: 10px;
   padding-inline: 10px; */
-  color: #fff;
-}
-
-.header-logo-wrapper {
-  flex: 1;
-  justify-content: flex-start;
-  display: flex;
-  height: 5px;
+  background-color: transparent;
+      color: #fff;
+    }
+    
+    .navbar-active{
+      background-color: white;
+    }
+    .header-logo-wrapper {
+      flex: 1;
+      justify-content: flex-start;
+      display: flex;
+      height: 5px;
+      align-items: center;
+    }
+    
+    #myDiv {
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out;
+      background-color: white;
+      padding-inline: 10px;
+    }
+    .menu-tab {
+      padding: 5px 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
   align-items: center;
-}
-
-#myDiv {
-  width: 100%;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
-}
-.menu-tab {
-  padding: 5px 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  &:hover {
-    background-color: gray;
-  }
+  color: black;
 }
 
 #myDiv.visible {
@@ -407,6 +417,7 @@
 .link > a{
   width: 100%;
   display: block;
+  font-size: 30px;
 }
 .link-not-active{
   background-color: inherit;
@@ -494,9 +505,7 @@ summary::marker{
 }
 
 .announcement-bar {
-  display: flex;
-  background-color: #E21010;
-  color: white; /* This is the Tailwind red-500 color */
+  display: flex; /* This is the Tailwind red-500 color */
   overflow: hidden;
   user-select: none;
   gap: var(--gap);

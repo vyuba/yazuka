@@ -362,15 +362,19 @@ document.querySelectorAll('a[href="/cart"]').forEach((a) => {
 
 document.getElementById("toggleButton").addEventListener("click", function () {
   const div = document.getElementById("myDiv");
-  const navbar = document.querySelector(".navbar")
+  const navbar = document.querySelector(".navbar-conatainer")
+  const logo = document.querySelector(".header-logo-wrapper")
   div.classList.toggle("visible");
   navbar.classList.toggle("navbar-active")
+  logo.style.opacity = logo.style.opacity === "0" ? "1" : "0";
   console.log("cliked")
 });
 
 document.getElementById("toggle-search").addEventListener("click", function () {
   const div = document.getElementById("search-box");
+  const navbar = document.querySelector(".navbar-conatainer")
   div.classList.toggle("active");
+  navbar.classList.toggle("navbar-active")
 });
 
 

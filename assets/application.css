@@ -2439,9 +2439,10 @@ select {
 
 .product-grid-item {
   display: block;
-  &:hover{
+  color: white;
+  /* &:hover{
     color: red;
-  }
+  } */
   /* border: 1px solid var(--borders); */
 }
 
