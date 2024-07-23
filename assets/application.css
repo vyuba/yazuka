@@ -2483,7 +2483,7 @@ select {
 
 .main-product {
   /* margin: var(--spacing) 0; */
-  background-color: #FAF8F5;
+  background-color: white;
 }
 
 .main-product .width {
