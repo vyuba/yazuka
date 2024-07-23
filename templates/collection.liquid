@@ -1,11 +1,11 @@
 <div class="pb-9 bg-red-600 pt-14 h-full">
   {% paginate collection.products by 50 %}
     <div class="flex flex-row gap-1 items-center">
-      <div class="flex items-center justify-center ml-4 my-4 w-10 h-10 text-white fill-white bg-black cursor-pointer hover:bg-red-600" onclick="history.back()">
+      {% comment %} <div class="flex items-center justify-center ml-4 my-4 w-10 h-10 text-white fill-white bg-black cursor-pointer hover:bg-red-600" onclick="history.back()">
         {% render 'icon-back-arrow' %}
-      </div>
+      </div> {% endcomment %}
     <h1 class="font-bold text-white text-xl uppercase px-4 py-2">{{collection.title}}</h1>
-    </div>
+    </div> 
   <div class="grid  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
       {% for product in collection.products %}
         {% render 'product-card', product:product %}

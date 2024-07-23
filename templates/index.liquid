@@ -28,14 +28,16 @@
       <div class="products">
         <div class="pb-9  pt-14 h-full">
             <div class="flex flex-row gap-1 items-center">
-            <h1 class="font-bold text-white text-xl uppercase px-4 py-2">{{collection.title}}</h1>
+            <h1 class="font-bold text-white text-xl uppercase px-4 py-2">New Arrivals</h1>
             </div>
-          <div class="grid  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
-              {% for product in all_products %}
-                {% render 'product-card', product:product %}
-              {% else %}
-                <p>no matches</p>
-              {% endfor %}
+              <div class="grid  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
+                {% for product in collections.all.products %}
+                  {% if product.tags contains 'New' %}
+                    {% render 'product-card', product: product %}
+                  {% endif %}
+                {% else %}
+                  <p>no matches</p>
+                {% endfor %}
               </div>
             </div>
       </div>
@@ -104,6 +106,9 @@
     width: 100%;
     height: fit-content;
     background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .new-arrivals{
     width: 100%;
