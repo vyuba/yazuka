@@ -362,9 +362,12 @@ document.querySelectorAll('a[href="/cart"]').forEach((a) => {
 
 document.getElementById("toggleButton").addEventListener("click", function () {
   const div = document.getElementById("myDiv");
+  const navbar = document.querySelector(".navbar")
   div.classList.toggle("visible");
+  navbar.classList.toggle("navbar-active")
   console.log("cliked")
 });
+
 document.getElementById("toggle-search").addEventListener("click", function () {
   const div = document.getElementById("search-box");
   div.classList.toggle("active");

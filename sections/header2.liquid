@@ -223,7 +223,7 @@
 }
 
 .navbar {
-  background-color: white ;
+  background-color:  transparent ;
   width: 100%;
   /* padding: 10px; */
   padding-block: 10px;
@@ -233,6 +233,10 @@
   /* padding-block-end: 10px; */
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   /* border: 1px solid #fff; */
+}
+
+.navbar-active{
+  background-color: white;
 }
 
 @media only screen and (max-width: 767px) {
@@ -491,8 +495,8 @@ summary::marker{
 
 .announcement-bar {
   display: flex;
-  background-color: yellow;
-  color: #ef4444; /* This is the Tailwind red-500 color */
+  background-color: #E21010;
+  color: white; /* This is the Tailwind red-500 color */
   overflow: hidden;
   user-select: none;
   gap: var(--gap);
