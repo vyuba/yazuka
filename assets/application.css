@@ -2116,6 +2116,7 @@ video {
     Reset and defaults
   */
 
+
 .screen {
   /* Use the custom property for height */
   height: calc(var(--vh, 1vh) * 100);
@@ -2179,7 +2180,8 @@ video {
 body {
   font-size: 16px;
   line-height: 1.65;
-  font-family: helvetica;
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -33,7 +33,21 @@
               <div class="grid  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
                 {% for product in collections.all.products %}
                   {% if product.tags contains 'New' %}
-                    {% render 'product-card', product: product %}
+                    {% comment %} {% render 'product-card', product: product %} {% endcomment %}
+                   <li class="product">
+                    <a href="{{ product.url }}">
+                      <img
+                        class="product__img"
+                        src="{{ product.featured_image | image_url: width: 300, height: 300 }}"
+                        alt="{{ product.featured_image.alt }}"
+                        width=""
+                        height=""
+                      />
+
+                      <p class="product__title">{{ product.title }}</p>
+                      <p class="product__price">{{ product.price | money}}</p>
+                    </a>
+                  </li> 
                   {% endif %}
                 {% else %}
                   <p>no matches</p>
