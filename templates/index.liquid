@@ -1,8 +1,11 @@
 <section class="index-page">
   <div class="index-page-container">
-    <video autoplay loop class="mov-logo" src="{{ "logo (1).mov" | asset_url }}"> </video>
+    <video autoplay loop muted class="mov-logo">
+      <source src="{{ 'logo (1).mov' | asset_url }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
      <div style="display: flex; flex-direction: column; gap: 25px; align-items: center;">
-      <a href="">
+      <a href="http://Ilovehighonfi.com">
         <button class="custom-button">
           <span class="glow-effect"></span>
           music
@@ -60,6 +63,11 @@
 }
 
 .custom-button:hover {
+  filter: brightness(1.5); /* hover:brightness-150 */
+  border-top-width: 8px; /* hover:border-t-4 */
+  border-bottom-width: 1px; /* hover:border-b */
+}
+.custom-button:focus {
   filter: brightness(1.5); /* hover:brightness-150 */
   border-top-width: 8px; /* hover:border-t-4 */
   border-bottom-width: 1px; /* hover:border-b */
