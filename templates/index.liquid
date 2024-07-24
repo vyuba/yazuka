@@ -1,11 +1,13 @@
 <section class="index-page">
   <div class="index-page-container">
-    {% comment %} <video class="mov-logo" src="{{ "logo.mov" | asset_url }} > </video> {% endcomment %}
-     <div style="display: flex; flex-direction: column; gap: 25px;">
-       <button class="custom-button">
-         <span class="glow-effect"></span>
-         music
-       </button>
+    <video autoplay loop class="mov-logo" src="{{ "logo (1).mov" | asset_url }}"> </video>
+     <div style="display: flex; flex-direction: column; gap: 25px; align-items: center;">
+      <a href="">
+        <button class="custom-button">
+          <span class="glow-effect"></span>
+          music
+        </button>
+      </a>
        <a href="{{ pages['shop'].url }}">
          <button class="custom-button">
            <span class="glow-effect"></span>
@@ -25,6 +27,13 @@
   justify-content: center;
   background-color: black;
   /* padding-top: 100px; */
+}
+
+.index-page-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 /* .index-page > button{
   color: red;
