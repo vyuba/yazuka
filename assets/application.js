@@ -360,15 +360,62 @@ document.querySelectorAll('a[href="/cart"]').forEach((a) => {
 
 //
 
-document.getElementById("toggleButton").addEventListener("click", function () {
+// document.getElementById("toggleButton").addEventListener("click", function () {
+//   const div = document.getElementById("myDiv");
+//   const navbar = document.querySelector(".navbar-conatainer")
+//   const logo = document.querySelector(".header-logo-wrapper")
+//   div.classList.toggle("visible");
+//   navbar.classList.toggle("navbar-active")
+//   logo.style.opacity = logo.style.opacity === "0" ? "1" : "0";
+//   console.log("cliked")
+// });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const toggleButton = document.getElementById("toggleButton");
   const div = document.getElementById("myDiv");
-  const navbar = document.querySelector(".navbar-conatainer")
-  const logo = document.querySelector(".header-logo-wrapper")
-  div.classList.toggle("visible");
-  navbar.classList.toggle("navbar-active")
-  logo.style.opacity = logo.style.opacity === "0" ? "1" : "0";
-  console.log("cliked")
+  const navbar = document.querySelector(".navbar-conatainer");
+  const logo = document.querySelector(".header-logo-wrapper");
+  const icon_open = document.querySelector("#icon-open");
+  const icon_close = document.querySelector("#icon-close");
+
+  function openNavbar() {
+    div.classList.add("visible");
+    navbar.classList.add("navbar-active");
+    logo.style.opacity = "0";
+    icon_open.style.display = "none";
+    icon_close.style.display = "block";
+  }
+
+  function closeNavbar() {
+    div.classList.remove("visible");
+    navbar.classList.remove("navbar-active");
+    logo.style.opacity = "1";
+    icon_open.style.display = "block";
+    icon_close.style.display = "none";
+  }
+
+  toggleButton.addEventListener("click", function(event) {
+    event.stopPropagation(); // Prevent this click from being caught by the document listener
+    if (div.classList.contains("visible")) {
+      closeNavbar();
+    } else {
+      openNavbar();
+    }
+    console.log("clicked");
+  });
+
+  // Close navbar when clicking outside
+  document.addEventListener("click", function(event) {
+    const isClickInsideNavbar = navbar.contains(event.target);
+    const isClickOnToggleButton = toggleButton.contains(event.target);
+
+    if (!isClickInsideNavbar && !isClickOnToggleButton && div.classList.contains("visible")) {
+      closeNavbar();
+    }
+  });
 });
+
+
 
 document.getElementById("toggle-search").addEventListener("click", function () {
   const div = document.getElementById("search-box");

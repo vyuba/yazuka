@@ -17,9 +17,9 @@
           <!-- Copyright notice -->
           <p>Be the first to hear about the latest conversations.Plus, receive 10% off your first purchase.
             </p>
-            <div class="newsletter-container w-full flex">
+            <div class="newsletter-container w-full ">
              <div class=" flex flex-row">
-              {%- form 'customer', id: 'ContactFooter', class:'newsletter flex flex-row' -%}
+              {%- form 'customer', id: 'ContactFooter', class:'newsletter flex ' -%}
                <input type="email" placeholder="Email"
                id="NewsletterForm--{{ section.id }}"
                   type="email"
@@ -44,7 +44,7 @@
                   class="newsletter-form__button field__button"
                   name="commit"
                   id="Subscribe"
-               > submit
+               > subscribe
                </button>
                {%- if form.errors -%}
                 <small class="newsletter-form__message form__message" id="ContactFooter-error">
@@ -74,29 +74,41 @@
     position: relative;
     background-color: #D0D0D0;
     padding-inline: 20px;
-    border-top: 2px solid gainsboro;
     z-index: 1;
   }
-
+  
   .newsletter-container{
     align-items: center;
     justify-content: flex-start;
     margin-block: 10px;
   }
   .newsletter{
-    border: 1px solid black;
-    width: 300px;
-    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
     padding-inline: 10px;
+    gap: 10px;
   }
-  input{
+  @media (min-width: 760px) {
+    .newsletter{
+    width: 300px;
+  }
+  }
+  input[type="email"] {
+    display: block;
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 11px;
+    /* border-top: 2px solid gainsboro; */
     height: 100%;
     padding-block: 10px;
-  }
+    padding-inline-start: 10px;
+}
   
   .newsletter-form__button{
-    /* background: black;
-    color: white; */
+    background: black;
+    color: white;
+    padding: 5px 10px;
   }
 
   .socails-container > p{

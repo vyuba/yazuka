@@ -2101,7 +2101,7 @@ video {
   --borders: #eee;
   --fieldBorders: #ddd;
   --text: #111;
-  --mediumText: #5e5e5e;
+  --mediumText: #fff;
   --radius: 12px;
   --pageWidth: 1024px;
   --fadeOff: left 0s 0.2s, opacity 0.2s;
@@ -2463,7 +2463,7 @@ select {
     border-bottom-left-radius: var(--radius); */
   display: block;
   padding: 20px 0;
-  /* color: var(--mediumText); */
+  color: var(--mediumText);
 }
 
 .product-grid-item-text h3 {

@@ -1,19 +1,49 @@
 <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="false" space-between="30"
 centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
 <swiper-slide>
-  <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_2718.heic?v=1687383200' width="" height="">
+  <div class="slider-banner">
+    <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_2718.heic?v=1687383200' width="" height="">
+    <div class="slider-banner-text">
+      <h1>slied</h1>
+      <p>this some real shit i am rocking fr</p>
+    </div>
+  </div>
 </swiper-slide>
 <swiper-slide>
-  <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_1023.heic?v=1687383403' width="" height="">
+  <div class="slider-banner">
+    <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_1023.heic?v=1687383403' width="" height="">
+    <div class="slider-banner-text">
+      <h1>slied</h1>
+      <p>this some real shit i am rocking fr</p>
+    </div>
+  </div>
 </swiper-slide>
 <swiper-slide>
-  <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_0450.heic?v=1687383323' width="" height="">
+  <div class="slider-banner">
+    <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_0450.heic?v=1687383323' width="" height="">
+    <div class="slider-banner-text">
+      <h1>slied</h1>
+      <p>this some real shit i am rocking fr</p>
+    </div>
+  </div>
 </swiper-slide>
 <swiper-slide>
-  <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/1BC8DF1B-EAF3-47BB-B4F0-2B74ED833E26.jpg?v=1687380664' width="" height="">
+  <div class="slider-banner">
+    <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/1BC8DF1B-EAF3-47BB-B4F0-2B74ED833E26.jpg?v=1687380664' width="" height="">
+    <div class="slider-banner-text">
+      <h1>slied</h1>
+      <p>this some real shit i am rocking fr</p>
+    </div>
+  </div>
 </swiper-slide>
 <swiper-slide>
-  <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_2712_1.jpg?v=1678705839' width="" height="">
+  <div class="slider-banner">
+    <img src='https://cdn.shopify.com/s/files/1/0552/4511/1342/files/IMG_2712_1.jpg?v=1678705839' width="" height="">
+    <div class="slider-banner-text">
+      <h1>slied</h1>
+      <p>this some real shit i am rocking fr</p>
+    </div>
+  </div>
 </swiper-slide>
 </swiper-container>
 
@@ -32,10 +62,51 @@ centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="fa
     align-items: center;
   }
 
-  swiper-slide img {
+  /* swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  } */
+
+  .slider-banner{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .slider-banner > img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+
+  .slider-banner-text{
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-block: 5px 20px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+    padding-inline: 20px;
+  }
+
+  .slider-banner-text > h1{
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+  .slider-banner-text > p{
+    font-size: 20px;
+    text-transform: uppercase;
   }
 </style>
