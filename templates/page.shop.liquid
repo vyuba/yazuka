@@ -31,63 +31,6 @@
             </a>
         </div>
   </div>
-  <div class="new-arrivals">
-      <div class="products">
-        <div class="pb-9  pt-14 h-full">
-            <div class="flex flex-row gap-1 items-center">
-            <h1 class="font-bold text-white text-xl uppercase px-4 py-2">New Arrivals</h1>
-            </div>
-              <div class=" new-products-in-mobile-view   grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
-                {% for product in collections.all.products limit: 2 %}
-                  {% if product.tags contains 'New' %}
-                    {% comment %} {% render 'product-card', product: product %} {% endcomment %}
-                   <li class="product">
-                    <a href="{{ product.url }}">
-                      <img
-                        class="product__img"
-                        src="{{ product.featured_image | image_url: width: 300, height: 300 }}"
-                        alt="{{ product.featured_image.alt }}"
-                        width=""
-                        height=""
-                      />
-
-                      <p class="product__title">{{ product.title }}</p>
-                      <p class="product__price">{{ product.price | money}}</p>
-                    </a>
-                  </li> 
-                  {% endif %}
-                {% else %}
-                  <p>no matches</p>
-                {% endfor %}
-              </div>
-              <div class="new-products-in-laptop-view  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
-                {% for product in collections.all.products limit: 5 %}
-                  {% if product.tags contains 'New' %}
-                    {% comment %} {% render 'product-card', product: product %} {% endcomment %}
-                   <li class="product">
-                    <a href="{{ product.url }}">
-                      <img
-                        class="product__img"
-                        src="{{ product.featured_image | image_url: width: 300, height: 300 }}"
-                        alt="{{ product.featured_image.alt }}"
-                        width=""
-                        height=""
-                      />
-
-                      <p class="product__title">{{ product.title }}</p>
-                      <p class="product__price">{{ product.price | money}}</p>
-                    </a>
-                  </li> 
-                  {% endif %}
-                {% else %}
-                  <p>no matches</p>
-                {% endfor %}
-              </div>
-            </div>
-      </div>
-      {% render 'product-swipper' %}
-  </div>
-
 </section>
 
 <style>
