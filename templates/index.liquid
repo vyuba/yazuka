@@ -1,209 +1,78 @@
-<section class="shop-page">
-  <div class="banner ">
-       <img
-        src="{{ "yazuka banner img.jpg"  | asset_url }}"
-        class="img-banner"
-        height=""
-        width=""
-        alt="Background Image"
-      >
-       <img
-        src="{{ "yazuka banner img - Copy.jpg"  | asset_url }}"
-        class="img-banner2"
-        height=""
-        width=""
-        alt="Background Image"
-      >
-        <div class="logo">
-          <img src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/YAZUKA.png?v=1674193263" alt=""
-          height=""
-          width=""
-         >
-        </div>
-        <div class="collection-container">
-            <a href="{{ routes.all_products_collection_url }}">
-              <li>
-                collection
-              </li>
-            </a>
-            <a href="{{ pages['gallery'].url }}">
-              <li>gallery</li>
-            </a>
-        </div>
+<section class="index-page">
+  <div class="index-page-container">
+    {% comment %} <video class="mov-logo" src="{{ "logo.mov" | asset_url }} > </video> {% endcomment %}
+     <div style="display: flex; flex-direction: column; gap: 25px;">
+       <button class="custom-button">
+         <span class="glow-effect"></span>
+         music
+       </button>
+       <button class="custom-button">
+         <span class="glow-effect"></span>
+         merch
+       </button>
+     </div>
   </div>
-  <div class="new-arrivals">
-      <div class="products">
-        <div class="pb-9  pt-14 h-full">
-            <div class="flex flex-row gap-1 items-center">
-            <h1 class="font-bold text-white text-xl uppercase px-4 py-2">New Arrivals</h1>
-            </div>
-              <div class=" new-products-in-mobile-view   grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
-                {% for product in collections.all.products limit: 2 %}
-                  {% if product.tags contains 'New' %}
-                    {% comment %} {% render 'product-card', product: product %} {% endcomment %}
-                   <li class="product">
-                    <a href="{{ product.url }}">
-                      <img
-                        class="product__img"
-                        src="{{ product.featured_image | image_url: width: 300, height: 300 }}"
-                        alt="{{ product.featured_image.alt }}"
-                        width=""
-                        height=""
-                      />
-
-                      <p class="product__title">{{ product.title }}</p>
-                      <p class="product__price">{{ product.price | money}}</p>
-                    </a>
-                  </li> 
-                  {% endif %}
-                {% else %}
-                  <p>no matches</p>
-                {% endfor %}
-              </div>
-              <div class="new-products-in-laptop-view  grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 mx-4">
-                {% for product in collections.all.products limit: 5 %}
-                  {% if product.tags contains 'New' %}
-                    {% comment %} {% render 'product-card', product: product %} {% endcomment %}
-                   <li class="product">
-                    <a href="{{ product.url }}">
-                      <img
-                        class="product__img"
-                        src="{{ product.featured_image | image_url: width: 300, height: 300 }}"
-                        alt="{{ product.featured_image.alt }}"
-                        width=""
-                        height=""
-                      />
-
-                      <p class="product__title">{{ product.title }}</p>
-                      <p class="product__price">{{ product.price | money}}</p>
-                    </a>
-                  </li> 
-                  {% endif %}
-                {% else %}
-                  <p>no matches</p>
-                {% endfor %}
-              </div>
-            </div>
-      </div>
-      {% render 'product-swipper' %}
-  </div>
-
 </section>
 
 <style>
-.shop-page{
+.index-page{
   width: 100%;
-  height: 100%;
-  /* position: relative; */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  /* padding-top: 100px; */
+}
+/* .index-page > button{
+  color: red;
+} */
+
+.mov-logo{
+  width: 300px;
+  height: fit-content;
+}
+.custom-button {
+  background-color: black; /* bg-red-950 */
+  color: red; /* text-red-400 */
+  border: 1px solid rgba(190, 30, 30, 1);  ; /* border border-red-400 */
+  border-bottom-width: 8px; /* border-b-4 */
+  font-weight: 500; /* font-medium */
+  overflow: hidden;
+  position: relative;
+  padding: 10px 20px; /* px-4 py-2 */
+  border-radius: 10px; /* rounded-md */
+  outline: none;
+  transition: all 0.3s; /* duration-300 */
+  text-transform: uppercase;
+  font-size: 30px;
 }
 
-  .banner{
-    position: relative;
-    width: 100%;
-    height: 600px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    /* background-image: url("{{ "yazuka banner img.jpg"  | asset_url }}") ;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; */
-  }
+.custom-button:hover {
+  filter: brightness(1.5); /* hover:brightness-150 */
+  border-top-width: 8px; /* hover:border-t-4 */
+  border-bottom-width: 1px; /* hover:border-b */
+}
 
-  
-  /* .banner::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    } */
-    
-    .img-banner{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      inset: 0;
-      /* transform: rotate(270deg); */
-    }
-    .img-banner2{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      inset: 0;
-      /* transform: rotate(270deg); */
-      display: none;
-    }
-    
-    .banner-container{
-      z-index: 1000;
-    }
-    
-    .logo{
-      font-size: 100px;
-      text-transform: capitalize;
-      position: fixed;
-      color: white;
-      z-index: 1;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .collection-container{
-      z-index: 1;
-    font-size: 15px;
-    font-weight: 800;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    padding-bottom: 20px;
-    text-transform: uppercase;
-  }
-  
-  .products{
-    width: 100%;
-    height: fit-content;
-    background-color: #D0D0D0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .new-arrivals{
-    width: 100%;
-    height: 100%;
-    background-color: #FAF8F5;
-    z-index: 2;
-    position: relative;
-  }
-  
-  .new-products-in-mobile-view{
-    display: grid;
-  }
-  .new-products-in-laptop-view{
-    display: none;
-  }
+.custom-button:active {
+  opacity: 0.75; /* active:opacity-75 */
+}
 
+.glow-effect {
+  background-color: rgba(190, 30, 30, 1); /* bg-red-400 */
+  box-shadow: 0 0 10px 10px rgba(248, 113, 113, 0.3); /* shadow-red-400 */
+  position: absolute;
+  top: -150%;
+  left: 0;
+  display: inline-flex;
+  width: 320px; /* w-80 */
+  height: 5px;
+  border-radius: 6px; /* rounded-md */
+  opacity: 0.5;
+  transition: top 0.5s; /* duration-500 */
+}
 
-  @media (min-width: 1024px) {
-    .img-banner{
-      display: none;
-    }
-    .img-banner2{
-      display: block;
-    }
-    .banner{
-      height: calc(100vh - 120px);
-    }
-    .new-products-in-laptop-view{
-    display: grid;
-    }
-    .new-products-in-mobile-view{
-     display: none;
-    }
-  }
-  
-  </style>
+.custom-button:hover .glow-effect {
+  top: 150%;
+}
+</style>
