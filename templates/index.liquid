@@ -10,12 +10,14 @@
      <div style="display: flex; flex-direction: column; gap: 25px; align-items: center;">
       <a href="http://Ilovehighonfi.com">
         <button class="custom-button">
+          <span class="dot"></span>
           <span class="glow-effect"></span>
           music
         </button>
       </a>
        <a href="{{ pages['shop'].url }}">
          <button class="custom-button">
+          <span class="dot"></span>
            <span class="glow-effect"></span>
            merch
          </button>
@@ -25,6 +27,37 @@
 </section>
 
 <style>
+
+.dot{
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: red;
+  border-radius: 100%;
+  right: 5px;
+}
+
+.dot::after{
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: red;
+  border-radius: 100%;
+  right: 10px;
+}
+
+.dot::before{
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: red;
+  border-radius: 100%;
+  right: 20px;
+}
+
+
 .index-page{
   width: 100%;
   height: 100svh;
@@ -58,27 +91,27 @@
 .custom-button {
   background-color: black; /* bg-red-950 */
   color: red; /* text-red-400 */
-  border: 1px solid rgba(190, 30, 30, 1);  ; /* border border-red-400 */
-  border-bottom-width: 8px; /* border-b-4 */
-  font-weight: 500; /* font-medium */
+  border: 4px solid rgba(190, 30, 30, 1);  ; /* border border-red-400 */
+  border-bottom-width: 13px; /* border-b-4 */
+  font-weight: 200; /* font-medium */
   overflow: hidden;
   position: relative;
-  padding: 10px 20px; /* px-4 py-2 */
-  border-radius: 10px; /* rounded-md */
+  padding: 10px 20px 10px 5px; /* px-4 py-2 */
+  border-radius: 17px; /* rounded-md */
   outline: none;
   transition: all 0.3s; /* duration-300 */
   text-transform: uppercase;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .custom-button:hover {
   filter: brightness(1.5); /* hover:brightness-150 */
-  border-top-width: 8px; /* hover:border-t-4 */
+  border-top-width: 13px; /* hover:border-t-4 */
   border-bottom-width: 1px; /* hover:border-b */
 }
 .custom-button:focus {
   filter: brightness(1.5); /* hover:brightness-150 */
-  border-top-width: 8px; /* hover:border-t-4 */
+  border-top-width: 13px; /* hover:border-t-4 */
   border-bottom-width: 1px; /* hover:border-b */
 }
 
