@@ -9,22 +9,22 @@
       <source src="{{ 'logo (2).mp4'  | asset_url }}" type="video/mp4">
     </video> {% endcomment %}
     <img src="{{ 'logo-2--unscreen.gif'  | asset_url }}" alt="" width="" height="" class="mov-logo">
-     {% comment %} <div style="display: flex; flex-direction: column; gap: 25px; align-items: center;">
-      <a href="http://Ilovehighonfi.com">
+     <div style="display: flex; flex-direction: column; gap: 25px; align-items: center; z-index:1;">
+      <a href="{{ pages['artist'].url }}">
         <button class="custom-button">
           <span class="dot"></span>
           <span class="glow-effect"></span>
           music
         </button>
       </a>
-       <a href="{{ pages['shop'].url }}">
+       <a href="{{ pages['shop'].url }}">s
          <button class="custom-button">
           <span class="dot"></span>
            <span class="glow-effect"></span>
            merch
          </button>
        </a>
-     </div> {% endcomment %}
+     </div>
   </div>
 </section>
 
