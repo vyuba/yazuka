@@ -3,9 +3,10 @@
     {% comment %} <video autoplay playsinline loop muted class="mov-logo">
       <source src="https://cdn.shopify.com/videos/c/o/v/cbe74b7fee0848df9d8a9dc0c2ac1245.mov" type="video/mp4">
     </video> {% endcomment %}
-    <video autoplay playsinline loop muted class="mov-logo">
+    {% comment %} <video autoplay playsinline loop muted class="mov-logo">
       <source src="{{ 'logo (2).mp4'  | asset_url }}" type="video/mp4">
-    </video>
+    </video> {% endcomment %}
+    <img src="{{ 'logo-2--unscreen.gif'  | asset_url }}" alt="" width="" height="" class="mov-logo">
      <div style="display: flex; flex-direction: column; gap: 25px; align-items: center;">
       <a href="http://Ilovehighonfi.com">
         <button class="custom-button">
@@ -30,8 +31,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
+  /* background-color: black; */
   overflow: hidden;
+  background-image: url("{{ 'index-background.jpg' | asset_url }}");
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: cover;
   /* padding-top: 100px; */
 }
 
