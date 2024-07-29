@@ -1,4 +1,4 @@
-{% if 'index' != template %}
+{% if template != 'index' and template != 'page.artist' %}
   <div class="navber-top">
     <div class="announcement-bar" style="background-color: {% if template == 'page.shop' %} #E21010 {% elsif template == 'product' %} #E21010 {% else %} white {% endif %}; 
     color: {% if template == 'page.shop' %} white {% elsif template == 'product' %} white {% else %} #E21010 {% endif %};">
