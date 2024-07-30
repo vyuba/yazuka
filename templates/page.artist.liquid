@@ -13,7 +13,6 @@
                 <img src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/index-background.jpg?v=1722259908"
                 width="" height="" alt="">
                 </div>
-                </div>
                 <div class="scroll-down js-scroll-fade">
                     <div>
                         <img src="{{ 'logo-2--unscreen.gif'  | asset_url }}" alt="" width="" height="" class="clikable-image">
@@ -37,9 +36,10 @@
                         <circle cx="0.547" cy="0.547" r="0.547" fill="currentColor" transform="scale(-1 1) rotate(45 -13.178 -.214)"></circle>
                         </svg>
                         </div>
-                </div>
+            </div>
+        </div>
     </div>
-    <nav class="responsive-artist-navbar duration-[444ms]">
+    {% comment %} <nav class="responsive-artist-navbar duration-[444ms]">
         <img src="{{ 'logo-2--unscreen.gif'  | asset_url }}" alt="" width="150px" height="" class="">
         <ul>
             <li class=""><a class="button-large" href="">
@@ -63,7 +63,7 @@
                 <button class="button-large bare js-sms"><span>TEXT</span></button>
             </li>
         </ul>
-    </nav>
+    </nav> {% endcomment %}
     <div class="music-icon-grid">
         <a class="grid-item" href="https://open.spotify.com/artist/6je6DxgdIm0CGZTgcIAHJW?si=lJoiRL8-SIWso3WMvL-oDw">  
             <div>
@@ -213,6 +213,7 @@
         display: block;
     }
     .artist-banner-img {
+        padding-top: 100px;
         width: 90%;
         margin-left: auto;
         margin-right: auto;
@@ -223,6 +224,7 @@
         /* height: 100%; */
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 2000ms;
+        flex-direction: column;
     }
 
     .image-container {
@@ -305,7 +307,7 @@
         flex-direction: column;
         padding-top: 0px;
         gap: 5px;
-        padding-bottom: 100px;
+        /* padding-bottom: 100px; */
     }
 
     .banner-container {
