@@ -8,11 +8,11 @@
       <source src="{{ 'logo (2).mp4'  | asset_url }}" type="video/mp4">
     </video> {% endcomment %}
     <img src="{{ 'logo-2--unscreen.gif'  | asset_url }}" alt="" width="" height="" class="mov-logo">
-      <div class="index-image-container">
+      {% comment %} <div class="index-image-container">
           <img src="{{'https://cdn.shopify.com/s/files/1/0552/4511/1342/files/index-background.jpg?v=1722259908' }}"
               width="300px" height="" alt="">
-      </div>
-     <div style="display: flex; flex-direction: row; gap: 10px; align-items: center; z-index:1; justify-content: center;">
+      </div> {% endcomment %}
+     <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; z-index:1; justify-content: center;">
       <a href="{{ pages['artist'].url }}">
         <button class="custom-button music">
           <span class="dot"></span>
