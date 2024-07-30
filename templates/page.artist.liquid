@@ -1,6 +1,6 @@
 <section class="artist-page">
     <nav class="artist-navbar">
-        <a href="">
+        <a onclick="history.back()">
             <li>{% render 'icon-back-arrow' %}</li>
         </a>
         <a href="">
@@ -8,37 +8,37 @@
         </a>
     </nav>
     <div class="artist-banner">
-        <img src="{{ 'logo-2--unscreen.gif'  | asset_url }}" alt="" width="" height="" class="clikable-image">
         <div class="artist-banner-img">
             <div class="image-container">
                 <img src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/index-background.jpg?v=1722259908"
-                    width="" height="" alt="">
-            </div>
-        </div>
-        <div class="scroll-down js-scroll-fade">
-        <div>
-            <h3 class="js-shuffle">CIRCUS MAXIMUS TOUR</h3>
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" fill="none" viewBox="0 0 11 12" class="bouncy">
-                <circle cx="5.332" cy="3.847" r="0.547" fill="currentColor"></circle>
-                <circle cx="5.332" cy="2.598" r="0.547" fill="currentColor"></circle>
-                <circle cx="5.332" cy="1.348" r="0.547" fill="currentColor"></circle>
-                <circle cx="5.332" cy="5.098" r="0.547" fill="currentColor"></circle>
-                <circle cx="5.332" cy="6.348" r="0.547" fill="currentColor"></circle>
-                <circle cx="5.332" cy="7.598" r="0.547" fill="currentColor"></circle>
-                <circle cx="5.332" cy="8.848" r="0.547" fill="currentColor"></circle>
-                <circle cx="5.332" cy="10.099" r="0.547" fill="currentColor"></circle>
-                <circle cx="5.332" cy="11.349" r="0.547" fill="currentColor"></circle>
-                <circle cx="9.304" cy="7.376" r="0.547" fill="currentColor" transform="rotate(45 9.304 7.376)"></circle>
-                <circle cx="8.42" cy="8.26" r="0.547" fill="currentColor" transform="rotate(45 8.42 8.26)"></circle>
-                <circle cx="7.536" cy="9.144" r="0.547" fill="currentColor" transform="rotate(45 7.536 9.144)"></circle>
-                <circle cx="6.652" cy="10.028" r="0.547" fill="currentColor" transform="rotate(45 6.652 10.028)"></circle>
-                <circle cx="0.547" cy="0.547" r="0.547" fill="currentColor" transform="scale(-1 1) rotate(45 -8.65 1.66)"></circle>
-                <circle cx="0.547" cy="0.547" r="0.547" fill="currentColor" transform="scale(-1 1) rotate(45 -10.16 1.036)"></circle>
-                <circle cx="0.547" cy="0.547" r="0.547" fill="currentColor" transform="scale(-1 1) rotate(45 -11.668 .41)"></circle>
-                <circle cx="0.547" cy="0.547" r="0.547" fill="currentColor" transform="scale(-1 1) rotate(45 -13.178 -.214)"></circle>
-            </svg>
-        </div>
-    </div>
+                width="" height="" alt="">
+                </div>
+                </div>
+                <div class="scroll-down js-scroll-fade">
+                    <div>
+                        <h3 class="js-shuffle">CIRCUS MAXIMUS TOUR</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" fill="none" viewBox="0 0 11 12" class="bouncy">
+                        <circle cx="5.332" cy="3.847" r="0.547" fill="currentColor"></circle>
+                        <circle cx="5.332" cy="2.598" r="0.547" fill="currentColor"></circle>
+                        <circle cx="5.332" cy="1.348" r="0.547" fill="currentColor"></circle>
+                        <circle cx="5.332" cy="5.098" r="0.547" fill="currentColor"></circle>
+                        <circle cx="5.332" cy="6.348" r="0.547" fill="currentColor"></circle>
+                        <circle cx="5.332" cy="7.598" r="0.547" fill="currentColor"></circle>
+                        <circle cx="5.332" cy="8.848" r="0.547" fill="currentColor"></circle>
+                        <circle cx="5.332" cy="10.099" r="0.547" fill="currentColor"></circle>
+                        <circle cx="5.332" cy="11.349" r="0.547" fill="currentColor"></circle>
+                        <circle cx="9.304" cy="7.376" r="0.547" fill="currentColor" transform="rotate(45 9.304 7.376)"></circle>
+                        <circle cx="8.42" cy="8.26" r="0.547" fill="currentColor" transform="rotate(45 8.42 8.26)"></circle>
+                        <circle cx="7.536" cy="9.144" r="0.547" fill="currentColor" transform="rotate(45 7.536 9.144)"></circle>
+                        <circle cx="6.652" cy="10.028" r="0.547" fill="currentColor" transform="rotate(45 6.652 10.028)"></circle>
+                        <circle cx="0.547" cy="0.547" r="0.547" fill="currentColor" transform="scale(-1 1) rotate(45 -8.65 1.66)"></circle>
+                        <circle cx="0.547" cy="0.547" r="0.547" fill="currentColor" transform="scale(-1 1) rotate(45 -10.16 1.036)"></circle>
+                        <circle cx="0.547" cy="0.547" r="0.547" fill="currentColor" transform="scale(-1 1) rotate(45 -11.668 .41)"></circle>
+                        <circle cx="0.547" cy="0.547" r="0.547" fill="currentColor" transform="scale(-1 1) rotate(45 -13.178 -.214)"></circle>
+                        </svg>
+                        </div>
+                        <img src="{{ 'logo-2--unscreen.gif'  | asset_url }}" alt="" width="" height="" class="clikable-image">
+                </div>
     </div>
     <nav class="responsive-artist-navbar duration-[444ms]">
         <img src="{{ 'logo-2--unscreen.gif'  | asset_url }}" alt="" width="150px" height="" class="">
@@ -128,7 +128,7 @@
     
     .grid-item{
         cursor: pointer;
-        width: 150px;
+        width: 100px;
     }
     .responsive-artist-navbar{
         position: absolute;
@@ -182,7 +182,7 @@
         perspective: 1000px;
         display: flex;
         align-items: center;
-        height: calc(100dvh - 200px);
+        height: 100%;
         /* height: 100%; */
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 2000ms;
@@ -221,11 +221,12 @@
     }
 
     .clikable-image {
-        position: fixed;
-        bottom: 0;
         width: 100px;
+        padding-bottom: 70px;
+        /* position: absolute;
+        bottom: 0;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%); */
         /* border: 2px white solid; */
         /* padding: 20px; */
         /* border-radius: 100%;
@@ -251,7 +252,7 @@
 
     .artist-banner {
         width: 100%;
-        height: fit;
+        height: 100vh;
         display: flex;
         flex-direction: column;
         /* padding: 40px 20px; */
