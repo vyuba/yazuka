@@ -1,4 +1,5 @@
-<section class="index-page">
+<section class="index-page-section">
+  <div class="index-page">
     <div class="index-page-container">
     {% comment %} <video autoplay playsinline loop muted class="mov-logo">
       <source src="https://cdn.shopify.com/videos/c/o/v/cbe74b7fee0848df9d8a9dc0c2ac1245.mov" type="video/mp4">
@@ -9,7 +10,7 @@
     <img src="{{ 'logo-2--unscreen.gif'  | asset_url }}" alt="" width="" height="" class="mov-logo">
      <div style="display: flex; flex-direction: column; gap: 25px; align-items: center; z-index:1; justify-content: center;">
       <a href="{{ pages['artist'].url }}">
-        <button class="custom-button">
+        <button class="custom-button music">
           <span class="dot"></span>
           <span class="glow-effect"></span>
           music
@@ -24,6 +25,7 @@
        </a>
      </div>
   </div>
+  </div>
 </section>
 
 <style>
@@ -35,7 +37,7 @@
   inset: 0;
   filter: brightness(0.09);
 }
-.dot{
+/* .dot{
   position: absolute;
   width: 5px;
   height: 5px;
@@ -62,16 +64,16 @@
   background-color: red;
   border-radius: 100%;
   right: 20px;
-}
+} */
 
 
 .index-page{
   width: 100%;
-  height: 100svh;
+  height: calc(100svh - 40px);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
+  background-color: #D9D9D9;
   overflow: hidden;
   /* background-image: url("{{ 'index-background.jpg' | asset_url }}");
   background-position: center;
@@ -81,11 +83,18 @@
   /* padding-top: 100px; */
 }
 
+.index-page-section{
+  background-color: black;
+  width: 100%;
+  padding: 20px;
+  height: fit;
+}
 .index-page-container{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: transparent;
 }
 /* .index-page > button{
   color: red;
@@ -96,51 +105,34 @@
   height: fit-content;
 }
 .custom-button {
-  background-color: black; /* bg-red-950 */
-  color: red; /* text-red-400 */
-  border: 4px solid rgba(190, 30, 30, 1);  ; /* border border-red-400 */
-  border-bottom-width: 13px; /* border-b-4 */
-  font-weight: 200; /* font-medium */
+  background-color: transparent; /* bg-red-950 */
+  color: black; /* text-red-400 */
+  border: 1px solid black;  ; /* border border-red-400 */ /* border-b-4 */
+  font-weight: 100; /* font-medium */
   overflow: hidden;
   position: relative;
-  padding: 10px 20px 10px 5px; /* px-4 py-2 */
+  padding: 10px 10px; /* px-4 py-2 */
   border-radius: 17px; /* rounded-md */
   outline: none;
   transition: all 0.3s; /* duration-300 */
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 50px;
+}
+
+.music{
+  padding-inline: 20px;
 }
 
 .custom-button:hover {
-  filter: brightness(1.5); /* hover:brightness-150 */
-  border-top-width: 13px; /* hover:border-t-4 */
-  border-bottom-width: 1px; /* hover:border-b */
+  filter: brightness(1.5);
+  border: 5px solid black;  /* hover:brightness-150 */
+   /* hover:border-b */
 }
 .custom-button:focus {
-  filter: brightness(1.5); /* hover:brightness-150 */
-  border-top-width: 13px; /* hover:border-t-4 */
-  border-bottom-width: 1px; /* hover:border-b */
+  filter: brightness(1.5); /* hover:brightness-150 */ /* hover:border-b */
 }
 
 .custom-button:active {
   opacity: 0.75; /* active:opacity-75 */
-}
-
-.glow-effect {
-  background-color: rgba(190, 30, 30, 1); /* bg-red-400 */
-  box-shadow: 0 0 10px 10px rgba(248, 113, 113, 0.3); /* shadow-red-400 */
-  position: absolute;
-  top: -150%;
-  left: 0;
-  display: inline-flex;
-  width: 320px; /* w-80 */
-  height: 5px;
-  border-radius: 6px; /* rounded-md */
-  opacity: 0.5;
-  transition: top 0.5s; /* duration-500 */
-}
-
-.custom-button:hover .glow-effect {
-  top: 150%;
 }
 </style>
