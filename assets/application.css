@@ -2452,8 +2452,8 @@ select {
   /* border-top-right-radius: var(--radius); */
   /* border-top-left-radius: var(--radius); */
   height: 80%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
+  /* object-fit: cover; */
   width: 100%;
 }
 
@@ -2467,12 +2467,14 @@ select {
 }
 
 .product-grid-item-text h3 {
-  font-size: 16px;
+  font-size: 14px;
   /* color: white; */
   margin-bottom: 5px;
+  text-transform: uppercase ;
 }
 
 .product-grid-item-text p {
+  font-size: 14px;
   line-height: 1;
   /* color: white; */
 }

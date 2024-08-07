@@ -14,7 +14,8 @@
 <div class="product-grid-item text-white hover:text-red-600">
   <a href="{{ product.url }}">
     <div class="image-container">
-      <img src="{{ product.featured_image | image_url: width: 400 }}" alt="Description of the image" height="" width=""  >
+      <img class="featured-image" src="{{ product.featured_image | image_url: width: 400 }}" alt="Description of the image" height="" width=""  >
+      <img class="last-image" src="{{ product.images.last | img_url: '450x450' }}" alt="{{ product.images.last.alt | escape }}"height="" width=""  />
       <div class="image__loader">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
           <radialGradient id="a12" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)">
@@ -67,6 +68,10 @@
     transform: translateX(100%);
   }
 }
+.featured-image{}
+.last-image{
+  display: none;
+}
 /* 
 .image-container {
   position: relative;
@@ -88,6 +93,14 @@
 
 .image-container {
   position: relative;
+}
+
+.image-container:hover .last-image {
+  display: block;
+}
+
+.image-container:hover .featured-image {
+  display: none;
 }
 
 .image__loader {
