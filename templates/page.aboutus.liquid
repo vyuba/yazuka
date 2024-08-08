@@ -1,27 +1,51 @@
-<header class="header">
-    <h1 class="header__title">ABOUT US</h1>
-  </header>
-  <main class="main">
-    <section class="hero">
-      <h2 class="hero__title">YAZUKA - connecting hearts, join us.</h2>
-      <div class="hero__image-container">
-        <img src={{"Yazuka_logo.png" | asset_url}} alt="YAZUKA Logo" class="hero__image" width="" height="">
-      </div>
-      <p class="hero__text">YAZUKA is a creative agency designed to promote love & positivity in our community.</p>
-      <p class="hero__text">In a world where individualism often reigns supreme, there exists a word that carries the weight of a deep, unspoken truth. That word is YAZUKA, which means FAMILY. It is more than the word; it is an aspect that bonds us all. It embodies the very essence of family and community.</p>
-      <p class="hero__text">The separations and silences will surely lead you to eternal isolation. Being alone is like a stranded ship on the mighty ocean, finding no shore where it can unload all its weight. YAZUKA is here to strengthen your voice, so that you may never feel alone.</p>
+    <section class="about-us">
+        <header class="header">
+        <h1 class="header__title">ABOUT US</h1>
+      </header>
+      <main class="main">
+        <section class="hero">
+          <h2 class="hero__title">YAZUKA - connecting hearts, join us.</h2>
+          <div class="hero__image-container">
+            <img src={{"Yazuka_logo.png" | asset_url}} alt="YAZUKA Logo" class="hero__image" width="" height="">
+          </div>
+          <div class="description">
+              <p class="hero__text">YAZUKA is a creative agency designed to promote love & positivity in our community.</p>
+              <p class="hero__text">In a world where individualism often reigns supreme, there exists a word that carries the weight of a deep, unspoken truth. That word is YAZÜKA, which means FAMILY. It is more than the word; it is an aspect that bonds us all. It embodies the very essence of family and community.
+                The separations and silences will surely lead you to eternal isolation. Being alone is like a stranded ship on the mighty ocean, finding no shore where it can unload all its weight. YAZÜKA is here to strengthen your voice, so it emerges like the sea pouring out its treasure.</p>
+              <p class="hero__text">The deep love for family, union, and freedom of expression kindled the life of HIGHONFI, whose real name is MobereOluwaFifunmi MohammedFuad Adewale Olopade, made him initiate YAZÜKA in 2021. YAZÜKA is more than an idea; it is an ideology harbored and nurtured by the visionary artist HIGHONFI.</p>
+              <p class="hero__text">HIGHONFI - Creating Infinite Community, Designed With Love And Unity
+                "The farther I have gone, the lonelier I become. We need community, I need community. What are we without community?".</p>
+              <p class="hero__text">At its core, the YAZÜKA concept is about creating one-of-a-kind designs that not only decorate your body but also speak to the depths of your soul. Love, unity, and FAMILY give power to the community, and YAZÜKA is the power grid.
+                YAZÜKA's vision extends beyond the domains of fashion. In a world where someone finds him stranded in solitude's darkness, YAZÜKA is a beacon of unity. The YAZÜKA family is not bound by blood, race, or geography. It is defined by the love and unity that flow through each member. Despite diverse demographics, we are from one source. We will remain one by recognizing ourselves in the community and welcoming other communities with open arms. This way, we can expand like the universe and create room for unending explorations.</p>
+                <div class="hero__image-container">
+                    <img src={{"Yazuka_logo.png" | asset_url}} alt="YAZUKA Logo" class="hero__image" width="" height="">
+                  </div>
+                  <p class="hero__text">From Humble Beginnings To Global Impact,
+                    YAZÜKA's journey like most astonishing stories started from ground up. The beginning comes into action when you think you should speak now, and the pictorial depiction of your words speaks louder than your voice. It does not disappear in the air; it stays and leaves impressions. It gives a second chance to the reader to be part of communication later if he/she is not comfortable right now. The words on YAZÜKA shirts are the keys for the readers to set on a journey.</p>
+                  <p class="hero__text">A journey that transcends others to success. With this perspective, YAZÜKA introduced its foremost design, "SOUL NOT FOR SALE”, “SHINE BRIGHT IN DARK TIMES” which appeared as the initial brushstroke on its stunning canvas. It was a simple statement engraved onto cloth, yet within its threads was the unfathomable power to awaken souls. SOUL NOT FOR SALE breathes life into conversations that spread love and spark the flames of belonging. It shows your true side to others and makes them accept yours and their own truths.
+                    Till date, YAZÜKA has introduced several eye-catching and eye-opening designs that start many conversations, creating an echo of community. Today, you can see YAZÜKA's range of designs gracing the shoulders of people across the globe. Beneath all YAZÜKA designs, beat the same heart—a heart that whips for love, unity, and the unbreakable bonds of a global community.</p>
+                  <p class="hero__text">These designs are the declaration that we stand together no matter our challenges.</p>
+                  <div class="hero__image-container">
+                      <img src={{"Yazuka_logo.png" | asset_url}} alt="YAZUKA Logo" class="hero__image" width="" height="">
+                      </div>
+                      <p class="hero__text">YAZÜKA seeks to provide apparel and style statements. They elicit appreciation and, at the same time, serve as catalysts for fascinating conversations.
+                        So, when you see a fellow YAZÜKA supporter on the street or at an event, take that moment to connect. It's a chance to share a smile, a nod, or a warm embrace. In that moment, you're not just strangers passing by; you're family. You're YAZÜKA.</p>
+                      <p class="hero__text">YAZÜKA 4 LIFE</p>
+          </div>
+        </section>
+      </main>
     </section>
-  </main>
 
-  <style>
-    .header {
-  background-color: #fafafa;
+<style>
+.header {
+  /* background-color: #fafafa; */
   padding: 2rem;
+  padding-top: 8rem;
   text-align: center;
 }
 
 .header__title {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #333;
 }
@@ -30,19 +54,26 @@
 .main {
   max-width: 800px;
   margin: 0 auto;
-  padding: 3rem;
-  text-align: center;
+  padding: 1.5rem;
 }
 
 .hero__title {
-  font-size: 2.5rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #333;
   margin-bottom: 2rem;
+  text-align: left;
+}
+
+.description{
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding-bottom: 2rem;
 }
 
 .hero__text {
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }

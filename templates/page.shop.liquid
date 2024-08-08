@@ -1,40 +1,27 @@
 <section class="shop-page">
   <div class="banner ">
-       <img
-        src="{{ "IMG_7048.JPG"  | asset_url }}"
-        class="img-banner"
-        height=""
-        width=""
-        alt="Background Image"
-      >
-      <div class="img-banner2"></div>
-        <div class="logo">
-          <img src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/YAZUKA.png?v=1674193263" alt=""
-          height=""
-          width=""
-         >
-        </div>
-        <div class="collection-container">
-            <a href="{{ routes.all_products_collection_url }}">
-              <li>
-                collection
-              </li>
-            </a>
-            {% comment %} <a href="{{ pages['gallery'].url }}">
-              <li>gallery</li>
-            </a> {% endcomment %}
-        </div>
+    <div class="img-banner2"></div>
+    <div class="logo">
+      <img src="https://cdn.shopify.com/s/files/1/0552/4511/1342/files/YAZUKA.png?v=1674193263" alt="" height=""
+        width="">
+    </div>
+    <div class="collection-container">
+      <a href="{{ routes.all_products_collection_url }}">
+        <li>
+          collection
+        </li>
+      </a>
+    </div>
   </div>
 </section>
 
 <style>
-.shop-page{
-  width: 100%;
-  height: 100%;
-  /* position: relative; */
-}
+  .shop-page {
+    width: 100%;
+    height: 100%;
+  }
 
-  .banner{
+  .banner {
     position: relative;
     width: 100%;
     height: 600px;
@@ -43,67 +30,57 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    /* background-image: url("{{ "yazuka banner img.jpg"  | asset_url }}") ;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; */
-  }
-  .banner::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
-  pointer-events: none; /* Ensures the pseudo-element does not interfere with interaction */
   }
 
-  
-  /* .banner::before {
-    content: "";
+  .banner::after {
+    content: '';
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    } */
-    
-    .img-banner{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      inset: 0;
-      /* transform: rotate(270deg); */
-    }
-    .img-banner2 {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    pointer-events: none;
+  }
+
+
+  .img-banner2 {
     position: absolute;
-    top: 0; /* Ensure it starts at the top */
-    left: 0; /* Ensure it starts from the left */
-    right: 0; /* Ensure it spans the full width */
-    bottom: 0; /* Ensure it spans the full height */
-    background-image: url('{{ "IMG_7048.JPG" | asset_url }}'); /* Use the URL as a background image */
-    background-size: cover; /* Scale the image to cover the container */
-    background-position: center 30%; /* Align the image to the top */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    display: none; /* Make sure the element is visible */
-}
-    
-    .banner-container{
-      z-index: 1000;
-    }
-    
-    .logo{
-      font-size: 100px;
-      text-transform: capitalize;
-      position: fixed;
-      color: white;
-      z-index: 1;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .collection-container{
-      z-index: 1;
+    top: 0;
+    /* Ensure it starts at the top */
+    left: 0;
+    /* Ensure it starts from the left */
+    right: 0;
+    /* Ensure it spans the full width */
+    bottom: 0;
+    /* Ensure it spans the full height */
+    background-image: url('{{ "IMG_7048.JPG" | asset_url }}');
+    /* Use the URL as a background image */
+    background-size: cover;
+    /* Scale the image to cover the container */
+    background-position: center;
+    /* Align the image to the top */
+    background-repeat: no-repeat;
+    /* Prevent the image from repeating */
+  }
+
+  .banner-container {
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 100px;
+    text-transform: capitalize;
+    position: fixed;
+    color: white;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .collection-container {
+    z-index: 1;
     font-size: 15px;
     font-weight: 800;
     color: white;
@@ -113,8 +90,8 @@
     padding-bottom: 20px;
     text-transform: uppercase;
   }
-  
-  .products{
+
+  .products {
     width: 100%;
     height: fit-content;
     background-color: #D0D0D0;
@@ -122,39 +99,40 @@
     align-items: center;
     justify-content: center;
   }
-  .new-arrivals{
+
+  .new-arrivals {
     width: 100%;
     height: 100%;
     background-color: #FAF8F5;
     z-index: 2;
     position: relative;
   }
-  
-  .new-products-in-mobile-view{
+
+  .new-products-in-mobile-view {
     display: grid;
   }
-  .new-products-in-laptop-view{
+
+  .new-products-in-laptop-view {
     display: none;
   }
 
 
   @media (min-width: 1024px) {
-    .img-banner{
-      display: none;
-    }
-    .img-banner2{
-      display: block;
+    .img-banner2 {
       object-fit: center;
+      background-position: center 30%;
     }
-    .banner{
+
+    .banner {
       height: calc(100vh - 120px);
     }
-    .new-products-in-laptop-view{
-    display: grid;
+
+    .new-products-in-laptop-view {
+      display: grid;
     }
-    .new-products-in-mobile-view{
-     display: none;
+
+    .new-products-in-mobile-view {
+      display: none;
     }
   }
-  
-  </style>
+</style>
