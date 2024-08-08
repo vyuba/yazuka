@@ -2451,8 +2451,8 @@ select {
 .product-grid-item img {
   /* border-top-right-radius: var(--radius); */
   /* border-top-left-radius: var(--radius); */
-  height: 80%;
-  object-fit: cover;
+  height: fit-content;
+  object-fit: center;
   /* object-fit: cover; */
   width: 100%;
 }
